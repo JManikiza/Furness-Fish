@@ -1,0 +1,159 @@
+body {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+   font-weight: 400;
+   padding: 8px;
+ }
+
+p {
+  padding: 2% 9%;
+  line-height: 1.5;
+  font-size: 1.2rem
+}
+
+hr {
+  border-style: dashed;
+  border-width: thin;
+  border-spacing: 10%;
+  color: #e1f2fb;
+}
+
+/*NAVIGATION*/
+
+
+.navbar {
+padding: 2% 5%;
+position:sticky;
+}
+
+.nav {
+  position: relative;
+  right: 39%;
+  top: 70px;
+}
+.navbar-brand {
+  font-size:1.5rem;
+  font-weight: 700;
+  position: relative;
+  left:43%;
+}
+/* BACKGROUND*/
+.background {
+opacity: 0.05;
+position:absolute;
+height: 600px;
+width: 1200px;
+right:1000px;
+
+}
+
+/*CAROSEL*/
+
+#image-slider {
+ padding: 1% 5%;
+ position:relative;
+}
+
+.carousel-inner {
+  height: 500px;
+}
+
+/*ABOUT*/
+h1 {
+  padding: 2% 2% 5%;
+}
+#about {
+  margin: 1% 10%;
+  padding-right:10%;
+  text-align: justify;
+  position: relative;
+}
+
+.button {
+  position: relative;
+  left: 50%;
+}
+
+
+/*SOURCE*/
+
+#source {
+  margin: 1% 10% 13%;
+  padding-right: 10%;
+  text-align:justify;
+}
+
+h2 {
+  padding: 2% 2% 5%;
+}
+
+.slowfood-logo {
+  float:right;
+  width:20%;
+  padding-left: 5%
+}
+
+
+/*FOOTER*/
+
+#footer {
+  background-color: #e1f2fb;
+  position: relative;
+  padding: 4% 6% 1%;
+  color: #3f3f3f;
+}
+
+.icons {
+position:relative;
+left:38.5%;
+width: 800px;
+}
+
+i {
+  padding-right: 8%;
+  font-size: 50px;
+}
+
+.address {
+text-align: left;
+font-size: 1.2rem;
+}
+
+.squid {
+  width: 800px;
+  position: absolute;
+  opacity: 0.5;
+  bottom: 263.5px;
+  left: 500px;
+}
+.contactdetails{
+  position: relative;
+  left:80%;
+  bottom: 184px;
+  font-size: 1.2rem;
+  line-height: 2;
+  text-align: justify;
+  width: 300px;
+
+}
+.copyrights {
+  text-align: center;
+  font-size: 0.8rem;
+  position: relative;
+  bottom: 60px;
+}
+
+
+
+/*CONTACT US PAGE*/
+
+#contact {
+  margin: 1% 10% 13%;
+  padding-right: 10%;
+}
+
+#form {
+  margin: 1% 10% 13%;
+  padding: 2% 9%;
+  line-height: 2;
+}
