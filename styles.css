@@ -23,17 +23,13 @@ hr {
 
 .navbar {
 padding: 2% 5%;
-position:sticky;
 }
 
 .nav {
-  position: relative;
-  right: 39%;
-  top: 70px;
+padding: 1% 38%;
 }
+
 .navbar-brand {
-  font-size:1.5rem;
-  font-weight: 700;
   position: relative;
   left:43%;
 }
