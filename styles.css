@@ -25,14 +25,11 @@ hr {
 padding: 2% 5%;
 }
 
-.nav {
-padding: 1% 38%;
+.nav-wrap {
+  text-align: center;
+  margin: 0 auto;
 }
 
-.navbar-brand {
-  position: relative;
-  left:43%;
-}
 /* BACKGROUND*/
 .background {
 opacity: 0.05;
