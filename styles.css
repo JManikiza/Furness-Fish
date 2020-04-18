@@ -32,11 +32,10 @@ padding: 2% 5%;
 
 /* BACKGROUND*/
 .background {
-opacity: 0.05;
-position:absolute;
-height: 600px;
-width: 1200px;
-right:1000px;
+  opacity: 0.05;
+  position: absolute;
+  width: 80%;
+  right: 45%;
 
 }
 
@@ -46,9 +45,13 @@ right:1000px;
  padding: 1% 5%;
  position:relative;
 }
-
+/*
 .carousel-inner {
-  height: 500px;
+  height: 50%;
+} */
+
+.carousel-item {
+  height: 600px;
 }
 
 /*ABOUT*/
@@ -97,9 +100,8 @@ h2 {
 }
 
 .icons {
-position:relative;
-left:38.5%;
-width: 800px;
+margin:0 auto;
+text-align: center;
 }
 
 i {
@@ -113,8 +115,12 @@ font-size: 1.2rem;
 font-weight: bold;
 }
 
+.squid-wrap {
+  margin: 0 auto;
+}
+
 .squid {
-  width: 800px;
+  width: 44%;
   position: absolute;
   opacity: 0.5;
   bottom: 270.5px;
