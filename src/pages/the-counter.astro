@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Feature from '../components/Feature.astro';
+import CatchList from '../components/CatchList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { dayBoat, shellfish, smoked } from '../data/site';
+
+import heroBass from '../assets/hero-seabass.jpg';
+import counterMonkfish from '../assets/counter-monkfish.jpg';
+import hakeBoard from '../assets/hake-board.jpg';
+import counterTuna from '../assets/counter-tuna.jpg';
+import dayBoatDawn from '../assets/day-boat-dawn.jpg';
+---
+
+<BaseLayout
+  title="The Counter"
+  description="Day-boat fish, hand-dived shellfish and traditionally smoked fish at Furness Fish Market, Borough Market. Filleted, pin-boned and prepped across the marble while you wait."
+  transparentHeader
+>
+  <Hero
+    image={heroBass}
+    alt="A whole wild sea bass laid on crushed ice with lemons and dill"
+    eyebrow="The counter"
+    title="What's on the ice"
+    lede="The list below is what we hold. What we have on any given morning depends entirely on what the boats found — which is rather the point."
+  />
+
+  <section class="section section--tight">
+    <div class="wrap wrap--mid" data-reveal>
+      <p class="eyebrow">How it works</p>
+      <p class="lede">
+        Pick your fish. Tell us what you are doing with it. It gets scaled, gutted, filleted,
+        pin-boned, skinned or butterflied on the marble in front of you, at no extra cost, by someone
+        who has done it ten thousand times.
+      </p>
+      <p class="muted" style="margin-top:1.5rem">
+        Prices move with the boats and the season, so we chalk them up fresh each morning rather than
+        pretending they are fixed. If you are cooking for a crowd or want something specific put by,
+        email us the day before and we will hold it back for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------- day boat -- -->
+  <section class="section section--paper">
+    <div class="wrap">
+      <div class="counter__head" data-reveal>
+        <p class="eyebrow">Fresh — day boat &amp; inshore</p>
+        <h2>Whole fish &amp; fillets</h2>
+        <p class="muted counter__blurb">
+          Cornish and Brittany day boats, the Brighton inshore fleet, Shetland, and a handful of
+          things worth flying for. Twelve hours from water to counter.
+        </p>
+      </div>
+      <CatchList items={dayBoat} />
+    </div>
+  </section>
+
+  <Feature
+    image={counterMonkfish}
+    alt="Monkfish heads, langoustines and octopus arranged on crushed ice"
+    eyebrow="Ask for it"
+    title="The bits most shops throw away"
+  >
+    <p>
+      Cod cheeks. Monkfish liver when we get it. Fish bones and heads for stock, free, if you ask
+      while we are filleting. Roe in season. Collars, wings, cheeks — the cuts that never make it to a
+      supermarket because they need explaining.
+    </p>
+    <p>
+      They are frequently the best eating on the whole fish, and almost always the cheapest thing on
+      the counter.
+    </p>
+  </Feature>
+
+  <!-- --------------------------------------------------------- shellfish -- -->
+  <section class="section">
+    <div class="wrap">
+      <div class="counter__head" data-reveal>
+        <p class="eyebrow">Shellfish &amp; crustacea</p>
+        <h2>Hand-dived, hand-gathered, hand-picked</h2>
+        <p class="muted counter__blurb">
+          Diver-caught scallops rather than dredged. Whitby crab picked by hand. And, at the far end,
+          a tin of something extremely serious.
+        </p>
+      </div>
+      <CatchList items={shellfish} />
+    </div>
+  </section>
+
+  <Feature
+    image={hakeBoard}
+    alt="Whole Shetland hake on ice beside a hand-chalked price board"
+    eyebrow="Smoked &amp; potted"
+    title="Oak, salt, time"
+    flip
+  >
+    <p>
+      Kippers from the Isle of Man. Arbroath smokies still warm. Undyed Shetland haddock, the only
+      thing you should ever build a kedgeree on. Loch Duart salmon, cold-smoked, and the reason our
+      December queue reaches the flower stall.
+    </p>
+    <p>
+      And the Morecambe Bay brown shrimps, potted in spiced butter to Leslie Salisbury's recipe —
+      the thing this family was known for long before London had heard of it.
+    </p>
+  </Feature>
+
+  <section class="section section--paper">
+    <div class="wrap">
+      <CatchList items={smoked} />
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------ boats -- -->
+  <CtaBand
+    image={dayBoatDawn}
+    alt=""
+    eyebrow="Sourcing"
+    title="We can tell you the boat"
+  >
+    <p class="lede">
+      Every fish on this counter came off a vessel we can name, landed on a day we can tell you.
+      That is not marketing — it is just what happens when you buy from fishermen instead of brokers.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="/our-story/">How we source</a>
+      <a class="btn btn--light" href="/visit/">Come and look</a>
+    </div>
+  </CtaBand>
+
+  <Feature
+    image={counterTuna}
+    alt="Tuna loin, red snapper, clams and scallops laid out with hand-written price cards"
+    eyebrow="Restaurants &amp; wholesale"
+    title="Chefs, we can sort you out"
+  >
+    <p>
+      A good number of London kitchens run their fish order through this counter. If you want
+      consistent day-boat supply, specific cuts prepped to spec, or a standing weekly order, talk to
+      Max.
+    </p>
+    <p>
+      Email <a href="mailto:furnessfishmarket@gmail.com">furnessfishmarket@gmail.com</a> and tell us
+      what you need and how often. We will be straight with you about what we can guarantee and what
+      depends on the weather.
+    </p>
+  </Feature>
+</BaseLayout>
+
+<style>
+  .counter__head {
+    max-width: 52ch;
+    margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+  }
+  .counter__blurb { margin-top: 1rem; }
+</style>

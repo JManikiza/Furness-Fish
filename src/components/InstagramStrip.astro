@@ -1,0 +1,161 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { site } from '../data/site';
+
+/**
+ * A curated grid that links out to both Instagram accounts.
+ *
+ * NOTE: these are hand-picked stills, not a live feed. Instagram's Basic
+ * Display API was retired and scraping the profile needs auth, so a live
+ * feed means either the Instagram Graph API (requires a linked Facebook
+ * business account) or a hosted widget such as Behold / EmbedSocial.
+ * Swapping this component out for one is a contained change — everything
+ * else on the page stays as it is.
+ */
+
+interface Tile {
+  image: ImageMetadata;
+  alt: string;
+  account: 'market' | 'oysterBar';
+}
+
+interface Props {
+  tiles: Tile[];
+}
+const { tiles } = Astro.props;
+
+const accounts = [site.instagram.market, site.instagram.oysterBar];
+---
+
+<section class="section section--ink insta">
+  <div class="wrap">
+    <div class="insta__head" data-reveal>
+      <div>
+        <p class="eyebrow">From the stall</p>
+        <h2>Follow the ice</h2>
+        <p class="muted insta__blurb">
+          What landed this morning, what Ryan has in the paella pan and what Darius is shucking —
+          posted from behind the counter, most days before nine.
+        </p>
+      </div>
+
+      <ul class="insta__accounts">
+        {
+          accounts.map((account) => (
+            <li>
+              <a class="btn btn--light" href={account.url} target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.6" />
+                  <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6" />
+                  <circle cx="17.6" cy="6.4" r="1.25" fill="currentColor" />
+                </svg>
+                {account.handle}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <ul class="insta__grid">
+      {
+        tiles.map((tile, index) => {
+          const account = site.instagram[tile.account];
+          return (
+            <li data-reveal data-reveal-delay={index * 70}>
+              <a href={account.url} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={tile.image}
+                  alt={tile.alt}
+                  widths={[280, 420, 620]}
+                  sizes="(min-width: 60rem) 20vw, (min-width: 40rem) 30vw, 45vw"
+                  loading="lazy"
+                />
+                <span class="insta__tag">@{account.handle}</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .insta__head {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: clamp(2.25rem, 4vw, 3.25rem);
+  }
+  .insta__blurb { max-width: 46ch; }
+
+  .insta__accounts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-content: start;
+  }
+  .insta__accounts li { margin: 0; }
+
+  .insta__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.5rem, 1.4vw, 1rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .insta__grid li { margin: 0; }
+
+  .insta__grid a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius);
+    line-height: 0;
+  }
+  .insta__grid :global(img) {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: transform 0.9s var(--ease), opacity 0.5s var(--ease);
+  }
+  .insta__grid a:hover :global(img),
+  .insta__grid a:focus-visible :global(img) {
+    transform: scale(1.06);
+    opacity: 0.72;
+  }
+
+  .insta__tag {
+    position: absolute;
+    left: 0.85rem;
+    bottom: 0.8rem;
+    font-family: var(--body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    line-height: 1.4;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    text-shadow: 0 1px 10px rgba(7, 28, 39, 0.75);
+  }
+  .insta__grid a:hover .insta__tag,
+  .insta__grid a:focus-visible .insta__tag { opacity: 1; transform: none; }
+
+  @media (min-width: 40rem) {
+    .insta__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 60rem) {
+    .insta__head {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+    .insta__grid { grid-template-columns: repeat(6, 1fr); }
+  }
+</style>

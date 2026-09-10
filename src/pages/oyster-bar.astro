@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Feature from '../components/Feature.astro';
+import CatchList from '../components/CatchList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { oysters as oysterVarieties, site } from '../data/site';
+
+import oystersImg from '../assets/oysters.jpg';
+import oysterBoard from '../assets/oyster-bar-board.jpg';
+import counterCustomers from '../assets/counter-customers.jpg';
+import scallops from '../assets/scallops.jpg';
+import counterSalmon from '../assets/counter-salmon.jpg';
+---
+
+<BaseLayout
+  title="The Oyster Boat"
+  description="Belon natives, Tarbouriech Spéciales and Fines de Claire, shucked to order at the Furness Oyster Bar in Borough Market. No booking, no table, no ceremony."
+  transparentHeader
+>
+  <Hero
+    image={oystersImg}
+    alt="Oysters on the half shell, packed on ice at the Furness Oyster Bar"
+    eyebrow="The Oyster Boat"
+    title="Shucked while you stand there"
+    lede="Six varieties on the board most days, a knife that never stops, and a cold glass to go with it. In the middle of Borough Market, standing up."
+  />
+
+  <section class="section section--tight">
+    <div class="wrap wrap--mid" data-reveal>
+      <p class="eyebrow">The idea</p>
+      <p class="lede">
+        There is no table. There is no booking. You walk up to the Boat, you say roughly what you
+        like — briny, creamy, big, small, or “I have never had one and I am nervous” — and ninety
+        seconds later you are holding a shell.
+      </p>
+      <p class="muted" style="margin-top:1.5rem">
+        Darius, Fred and Jack run it. Between them they shuck several thousand a week, and they have
+        talked more first-timers through their first oyster than they can count. Nobody here is going
+        to make you feel silly for asking what a Belon is.
+      </p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------ board -- -->
+  <section class="section section--paper">
+    <div class="wrap">
+      <div class="oyster__head" data-reveal>
+        <p class="eyebrow">On the board</p>
+        <h2>What we are shucking</h2>
+        <p class="muted oyster__blurb">
+          Varieties rotate with the season and with what the beds are giving up — natives run when
+          there is an R in the month, and the rest come and go. Ask what is best today.
+        </p>
+      </div>
+      <CatchList items={oysterVarieties} />
+    </div>
+  </section>
+
+  <Feature
+    image={oysterBoard}
+    alt="The hand-painted Furness Oyster Bar board listing Belon natives and Spéciales Fines de Claire"
+    eyebrow="Where to find it"
+    title="Follow the blackboard and the disco ball"
+  >
+    <p>
+      The Boat sits on the corner of the stall under a hand-painted board and, for reasons nobody has
+      ever fully justified, a mirror ball. If you can see <em>Belon Natives…</em> chalked up above
+      your head, you are in the right place.
+    </p>
+    <p>
+      It is the same counter, the same ice and the same family — just the end of it where things get
+      opened rather than wrapped.
+    </p>
+  </Feature>
+
+  <Feature
+    image={scallops}
+    alt="Hand-dived scallops in the shell"
+    eyebrow="Beyond oysters"
+    title="Caviar, urchins, and whatever else is worth opening"
+    flip
+  >
+    <p>
+      A proper caviar selection lives at this end of the counter, and the three of them will happily
+      walk you through the tins — what is worth the money, what is worth the money <em>today</em>, and
+      what to eat it with. No blinis-and-cream lecture unless you want one.
+    </p>
+    <p>
+      Alongside: sea urchins when we can get them, raw hand-dived scallops in the shell, and clams
+      that are frankly better raw than most people expect.
+    </p>
+  </Feature>
+
+  <!-- ----------------------------------------------------------- drink -- -->
+  <section class="section section--ink">
+    <div class="wrap wrap--mid" data-reveal>
+      <p class="eyebrow eyebrow--center">What to drink</p>
+      <blockquote class="pull oyster__quote">
+        “A cold, mean, unfashionable white — and no ice in it.”
+      </blockquote>
+      <p class="muted oyster__quote-note">
+        Muscadet. Picpoul. Chablis if you are feeling flush. Or a Guinness, which is not a joke and
+        never has been. Borough Market has all of it within thirty seconds' walk, and nobody minds
+        which one you come back holding.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    image={counterCustomers}
+    alt=""
+    eyebrow="Follow the bar"
+    title={`@${site.instagram.oysterBar.handle}`}
+  >
+    <p class="lede">
+      What is on the board today, what just came in, and the occasional video of Fred opening a
+      Tarbouriech faster than seems reasonable.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn--light" href={site.instagram.oysterBar.url} target="_blank" rel="noopener noreferrer">
+        Follow on Instagram
+      </a>
+      <a class="btn btn--light" href="/visit/">Find the stall</a>
+    </div>
+  </CtaBand>
+
+  <Feature
+    image={counterSalmon}
+    alt="Salmon fillets and shellfish across the Furness counter"
+    eyebrow="Parties &amp; events"
+    title="We will bring the Boat to you"
+  >
+    <p>
+      We shuck at private parties, launches and weddings — a table of ice, someone behind it with a
+      knife, and a great many oysters. It works considerably better than a canapé tray.
+    </p>
+    <p>
+      Email <a href="mailto:furnessfishmarket@gmail.com">furnessfishmarket@gmail.com</a> with your
+      date, rough numbers and where you are, and we will tell you what it would take.
+    </p>
+  </Feature>
+</BaseLayout>
+
+<style>
+  .oyster__head {
+    max-width: 52ch;
+    margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+  }
+  .oyster__blurb { margin-top: 1rem; }
+
+  .oyster__quote {
+    max-width: 22ch;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--paper);
+  }
+  .oyster__quote-note {
+    max-width: 54ch;
+    margin: 2rem auto 0;
+    text-align: center;
+  }
+</style>

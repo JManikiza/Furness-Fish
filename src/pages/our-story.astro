@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Feature from '../components/Feature.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { team } from '../data/site';
+
+import teamPhoto from '../assets/team-counter.jpg';
+import harbourBoat from '../assets/harbour-boat-bw.jpg';
+import jamieSpread from '../assets/jamie-spread.jpg';
+import counterCustomers from '../assets/counter-customers.jpg';
+import counterCreels from '../assets/counter-creels.jpg';
+---
+
+<BaseLayout
+  title="Our Story"
+  description="Four generations from Morecambe Bay to Borough Market — the Salisbury family, the team behind the counter, and why we still do it the slow way."
+  transparentHeader
+>
+  <Hero
+    image={teamPhoto}
+    alt="The Furness Fish Market team behind the counter at Borough Market"
+    eyebrow="Our story"
+    title="Four generations of getting up early"
+    lede="A Morecambe Bay shrimping family who took the long way to London — and brought the standards with them."
+    position="center 35%"
+  />
+
+  <section class="section section--tight">
+    <div class="wrap wrap--mid" data-reveal>
+      <p class="lede">
+        There is no clever origin story here. No brand consultant, no pivot. Just a family who have
+        been pulling things out of cold British water for the better part of a century, and who
+        decided — somewhere around 1998 — that London deserved to see what that actually looks like.
+      </p>
+    </div>
+  </section>
+
+  <Feature
+    image={harbourBoat}
+    alt="A working fishing boat moored at a harbour, photographed in black and white"
+    eyebrow="Where it began"
+    title="A horse, a cart, and the Morecambe sands"
+  >
+    <p>
+      <strong>Leslie Salisbury Sr.</strong> fished Morecambe Bay for more than fifty years. He learned
+      the brown shrimp beds from old Jack Butler, who worked the sands the way they had always been
+      worked — with a horse and a cart, reading the tide by eye, and getting off the flats before it
+      turned.
+    </p>
+    <p>
+      What Leslie built from that became the largest and most respected potted shrimp business in the
+      world. He is gone now. The recipe is not: we still pot Morecambe Bay brown shrimps in spiced
+      butter, and we still do it his way.
+    </p>
+  </Feature>
+
+  <Feature
+    image={jamieSpread}
+    alt="A spread from Jamie Oliver's Jamie's Kitchen featuring Les Salisbury holding a large monkfish"
+    eyebrow="South, eventually"
+    title="Ulverston, Barrow, Gretna, Penrith — then Southwark Street"
+    flip
+    caption="Les Salisbury in Jamie Oliver's Jamie's Kitchen"
+  >
+    <p>
+      <strong>Les Salisbury</strong> started where his father did: shrimping the bay as a boy. He took
+      the family trade across the north of England — market after market, town after town — before
+      taking the biggest gamble of the lot and bringing it to London.
+    </p>
+    <p>
+      Four decades in, he has built one of the most respected fish counters in the country. Jamie
+      Oliver put the stall in <em>Jamie's Kitchen</em> and called the Borough traders the heroes of the
+      market. Les would tell you that is overdoing it. Everyone else would tell you it is not.
+    </p>
+  </Feature>
+
+  <!-- ------------------------------------------------------------- team -- -->
+  <section class="section section--ink">
+    <div class="wrap">
+      <div class="team__intro" data-reveal>
+        <p class="eyebrow">Behind the counter</p>
+        <h2>The people who actually do it</h2>
+        <p class="muted">
+          A counter is only ever as good as the person standing behind it at half six in the morning,
+          in the cold, arranging ice. These are ours.
+        </p>
+      </div>
+
+      <ul class="team">
+        {
+          team.map((person, index) => (
+            <li data-reveal data-reveal-delay={(index % 3) * 90}>
+              <h3>{person.name}</h3>
+              <p class="team__role">{person.role}</p>
+              <p class="team__note">{person.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Feature
+    image={counterCustomers}
+    alt="Customers choosing fish across the Furness Fish Market counter"
+    eyebrow="The pride bit"
+    title="We would rather explain it than sell it"
+  >
+    <p>
+      Nobody here works on commission. If the turbot is not right today, we will say so and point you
+      at the hake instead. If you have never cooked a whole fish in your life, ask — someone will
+      talk you through it for as long as it takes, and prep it however you need.
+    </p>
+    <p>
+      That is not a service policy. It is just what happens when the people selling the fish are the
+      same people who care whether your dinner works.
+    </p>
+  </Feature>
+
+  <Feature
+    image={counterCreels}
+    alt="Lobster creels, driftwood and rope above the Furness fish display"
+    eyebrow="Slow Food"
+    title="Good, clean and fair — and we mean all three"
+    flip
+  >
+    <p>
+      We are proud members of the Slow Food movement, which in practice means we are willing to be
+      slower and dearer than a supermarket in exchange for knowing exactly what we are selling and
+      who caught it.
+    </p>
+    <p>
+      Day boats over trawlers wherever we can. Hand-dived over dredged. British over flown, when
+      British is better. Recyclable packaging where it exists. None of it is complicated — it is just
+      a series of small decisions, taken honestly, every day since 1998.
+    </p>
+  </Feature>
+
+  <CtaBand
+    image={teamPhoto}
+    alt=""
+    eyebrow="Come and say hello"
+    title="Ask us anything. Genuinely, anything."
+    position="center 35%"
+  >
+    <p class="lede">
+      6 Southwark Street, Borough Market. Open Tuesday to Sunday, and someone on this list will be
+      behind the counter every single one of those days.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="/visit/">Plan your visit</a>
+      <a class="btn btn--light" href="/the-counter/">See the counter</a>
+    </div>
+  </CtaBand>
+</BaseLayout>
+
+<style>
+  .team__intro {
+    max-width: 48ch;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .team {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 3.5vw, 2.75rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .team li {
+    margin: 0;
+    padding-top: 1.35rem;
+    border-top: 1px solid var(--line-on-dark);
+  }
+  .team h3 {
+    margin: 0 0 0.3rem;
+    font-size: clamp(1.45rem, 1.2rem + 0.9vw, 1.8rem);
+  }
+  .team__role {
+    margin: 0 0 0.7rem;
+    font-family: var(--body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    color: var(--brass-2);
+  }
+  .team__note {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--muted-on-dark);
+  }
+
+  @media (min-width: 40rem) {
+    .team { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64rem) {
+    .team { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

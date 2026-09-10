@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Feature from '../components/Feature.astro';
+import CtaBand from '../components/CtaBand.astro';
+import InstagramStrip from '../components/InstagramStrip.astro';
+import { Image } from 'astro:assets';
+import { pillars, site } from '../data/site';
+
+import heroCounter from '../assets/counter-lantern.jpg';
+import counterMonkfish from '../assets/counter-monkfish.jpg';
+import oysterBoard from '../assets/oyster-bar-board.jpg';
+import shopfront from '../assets/shopfront.jpg';
+import jamieSpread from '../assets/jamie-spread.jpg';
+import team from '../assets/team-counter.jpg';
+import counterWide from '../assets/counter-wide.jpg';
+
+import oysters from '../assets/oysters.jpg';
+import mulletClams from '../assets/mullet-clams.jpg';
+import counterTuna from '../assets/counter-tuna.jpg';
+import counterCustomers from '../assets/counter-customers.jpg';
+import scallops from '../assets/scallops.jpg';
+import counterCreels from '../assets/counter-creels.jpg';
+
+const instaTiles = [
+  { image: mulletClams, alt: 'Red mullet, clams and cavolo nero laid out on crushed ice', account: 'market' as const },
+  { image: oysters, alt: 'A bed of oysters on the half shell', account: 'oysterBar' as const },
+  { image: counterTuna, alt: 'Tuna loin, snapper and scallops with handwritten price cards', account: 'market' as const },
+  { image: scallops, alt: 'Hand-dived scallops in the shell', account: 'oysterBar' as const },
+  { image: counterCustomers, alt: 'Customers choosing fish across the Furness counter', account: 'market' as const },
+  { image: counterCreels, alt: 'Lobster creels and driftwood above the fish display', account: 'market' as const },
+];
+---
+
+<BaseLayout title={site.name} transparentHeader>
+  <Hero
+    image={heroCounter}
+    alt="The Furness Fish Market counter at Borough Market, laid with day-boat fish on crushed ice beneath a brass lantern"
+    eyebrow="Borough Market · London · Since 1998"
+    title="Twelve hours from the water."
+    lede="A Morecambe Bay fishing family holding the finest fish counter in London's oldest food market. Day boats, hand-dived shellfish, an oyster bar and a paella pan the size of a cartwheel."
+    variant="full"
+  >
+    <a class="btn btn--light" href="/the-counter/">See what's on the ice</a>
+    <a class="btn btn--light" href="/visit/">Find the stall</a>
+  </Hero>
+
+  <!-- ---------------------------------------------------- the promise -- -->
+  <section class="section section--tight">
+    <div class="wrap wrap--mid statement" data-reveal>
+      <p class="eyebrow eyebrow--center">No fishy business</p>
+      <p class="lede">
+        Most fish in London has passed through three sets of hands and two cold stores before it
+        reaches a counter. Ours has passed through one — the person who caught it. Ask Max what is
+        good this morning and he will not reach for a list. He will tell you which boat it came off,
+        what time it landed, and exactly what to do with it when you get home.
+      </p>
+    </div>
+  </section>
+
+  <!-- -------------------------------------------------------- pillars -- -->
+  <section class="section section--ink">
+    <div class="wrap">
+      <ul class="pillars">
+        {
+          pillars.map((pillar, index) => (
+            <li data-reveal data-reveal-delay={index * 110}>
+              <p class="pillars__figure">
+                {pillar.figure}
+                <span>{pillar.unit}</span>
+              </p>
+              <h3>{pillar.title}</h3>
+              <p class="muted">{pillar.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------ the three -- -->
+  <Feature
+    image={counterMonkfish}
+    alt="Monkfish, langoustines and octopus arranged on ice at the Furness counter"
+    eyebrow="The counter"
+    title="Twenty-one kinds of fresh, and a queue that knows why"
+  >
+    <p>
+      Turbot off a Brighton day boat. Dover sole from Cornwall. Shetland monkfish with shoulders on
+      it. Squid cleaned that morning, cod cheeks trimmed while you wait, and a slab of AAA yellowfin
+      that has never once been frozen.
+    </p>
+    <p>
+      Whatever you pick, it gets filleted, pin-boned, scaled or butterflied across the marble in front
+      of you — because a fishmonger who will not do that is really just a shop.
+    </p>
+    <p class="btn-row"><a class="link" href="/the-counter/">See the full counter</a></p>
+  </Feature>
+
+  <Feature
+    image={oysterBoard}
+    alt="The Furness Oyster Bar board listing Belon natives and Spéciales Fines de Claire"
+    eyebrow="The Oyster Boat"
+    title="Shucked while you stand there"
+    flip
+  >
+    <p>
+      Belon natives with that flat, metallic bite. Tarbouriech Spéciales, grown on a tide machine and
+      deep as a soup spoon. Boudeuse the size of a coin and twice as concentrated.
+    </p>
+    <p>
+      No table, no booking, no ceremony. You stand at the Boat with a cold glass in one hand, Fred
+      hands you a shell, and for ninety seconds Borough Market goes quiet.
+    </p>
+    <p class="btn-row"><a class="link" href="/oyster-bar/">Meet the Oyster Boat</a></p>
+  </Feature>
+
+  <Feature
+    image={shopfront}
+    alt="The Furness Fish Market stall front with the Bomba Paella board above the hot counter"
+    eyebrow="The hot counter"
+    title="A paella pan you can hear from Middle Road"
+  >
+    <p>
+      Saffron, bomba rice, chorizo, mussels, prawns and squid, going in the pan from opening and
+      turned over all day long. Chef Ryan does not portion it out early — you get it lifted straight
+      from the pan, socarrat and all.
+    </p>
+    <p>
+      Alongside it: Shetland salt-and-pepper chilli squid, and whatever else is worth cooking that
+      day. Eat it standing in the market with your fingers. That is the correct way.
+    </p>
+    <p class="btn-row"><a class="link" href="/paella/">Chef Ryan's paella</a></p>
+  </Feature>
+
+  <!-- ---------------------------------------------------------- story -- -->
+  <section class="section section--ink">
+    <div class="wrap">
+      <div class="story">
+        <figure class="story__media" data-reveal>
+          <Image
+            src={jamieSpread}
+            alt="A spread from Jamie Oliver's Jamie's Kitchen showing Les Salisbury holding a monkfish, captioned 'the heroes of Borough Market'"
+            widths={[420, 700, 1000]}
+            sizes="(min-width: 60rem) 40vw, 88vw"
+            loading="lazy"
+          />
+        </figure>
+
+        <div class="story__body" data-reveal data-reveal-delay="120">
+          <p class="eyebrow">Since 1998 — and long before that</p>
+          <h2>It started with a horse and cart on Morecambe sands</h2>
+          <p>
+            Leslie Salisbury Sr. learned to fish the brown shrimp beds from old Jack Butler, working
+            the sands the traditional way — a horse, a cart, and an unreasonable tolerance for cold
+            water. What he built became the biggest potted shrimp business in the world.
+          </p>
+          <p>
+            His son Les fished those same beds as a boy, then took the family north to Ulverston,
+            Barrow, Gretna and Penrith before landing, in 1998, on a corner of Southwark Street. Four
+            decades on, he is still the reason this counter looks the way it does.
+          </p>
+          <blockquote class="pull story__quote">
+            “The heroes of Borough Market”
+            <cite>Jamie Oliver, <em>Jamie's Kitchen</em></cite>
+          </blockquote>
+          <p class="btn-row"><a class="link" href="/our-story/">Read our story</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------------- team -- -->
+  <CtaBand
+    image={team}
+    alt="The Furness Fish Market team lined up behind the counter"
+    eyebrow="The people behind it"
+    title="Nine people, one counter, no shortcuts"
+  >
+    <p class="lede">
+      Max on the floor. Jessel, Peter, Harry and Dean on the knives. Darius, Fred and Jack on oysters
+      and caviar. Ryan on the pans. Between them they have forgotten more about fish than most
+      restaurants will ever learn.
+    </p>
+    <div class="btn-row"><a class="btn btn--light" href="/our-story/">Meet the team</a></div>
+  </CtaBand>
+
+  <InstagramStrip tiles={instaTiles} />
+
+  <!-- ---------------------------------------------------------- visit -- -->
+  <CtaBand
+    image={counterWide}
+    alt=""
+    eyebrow="Tuesday to Sunday"
+    title="Come and stand in front of it"
+  >
+    <p class="lede">
+      6 Southwark Street, on the Borough Market corner, two minutes from London Bridge. Come early if
+      you want the turbot — it does not hang about.
+    </p>
+    <div class="btn-row"><a class="btn btn--light" href="/visit/">Opening hours &amp; directions</a></div>
+  </CtaBand>
+</BaseLayout>
+
+<style>
+  .statement { text-align: center; }
+
+  /* ------------------------------------------------------------ pillars -- */
+
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .pillars li { margin: 0; }
+
+  .pillars__figure {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0 0 0.9rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--line-on-dark);
+    font-family: var(--display);
+    font-size: clamp(3rem, 2.2rem + 2.6vw, 4.4rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--brass-2);
+  }
+  .pillars__figure span {
+    font-family: var(--body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted-on-dark);
+  }
+  .pillars h3 { margin-bottom: 0.6rem; }
+
+  /* -------------------------------------------------------------- story -- */
+
+  .story {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.25rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .story__media { margin: 0; }
+  .story__media :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  .story__quote {
+    margin: 2.25rem 0 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--brass);
+    color: var(--paper);
+  }
+  .story__quote cite {
+    display: block;
+    margin-top: 1rem;
+    font-family: var(--body);
+    font-style: normal;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass-2);
+  }
+  .story__quote cite em { font-style: italic; text-transform: none; letter-spacing: 0.08em; }
+
+  @media (min-width: 48rem) {
+    .pillars { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 60rem) {
+    .story { grid-template-columns: 0.85fr 1fr; }
+  }
+</style>

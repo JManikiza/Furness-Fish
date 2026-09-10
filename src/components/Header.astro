@@ -1,0 +1,300 @@
+---
+import { Image } from 'astro:assets';
+import wordmark from '../assets/logo-wordmark.png';
+import wordmarkWhite from '../assets/logo-wordmark-white.png';
+import { nav, site } from '../data/site';
+
+interface Props {
+  /** Sit over the top of a hero image rather than above it. */
+  transparent?: boolean;
+}
+const { transparent = false } = Astro.props;
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || path === href.replace(/\/$/, '');
+---
+
+<header class:list={['site-header', transparent && 'site-header--transparent']} data-header>
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/" aria-label={`${site.name} — home`}>
+      <Image class="brand-dark" src={wordmark} alt={site.name} width={601} height={251} loading="eager" />
+      <Image class="brand-light" src={wordmarkWhite} alt="" width={601} height={251} loading="eager" aria-hidden="true" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+      <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+    <nav aria-label="Primary, mobile">
+      <ul>
+        <li><a href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a></li>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <p class="mobile-nav__meta">
+      6 Southwark Street · Borough Market<br />
+      Tue–Sat 8am–5pm · Sun 8am–4pm
+    </p>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bone);
+    border-bottom: 1px solid var(--line);
+    transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease);
+  }
+
+  /* Over a hero: transparent until the page scrolls. */
+  .site-header--transparent {
+    position: fixed;
+    inset-inline: 0;
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  .site-header--transparent .site-nav a,
+  .site-header--transparent .nav-toggle { color: #fff; }
+  .site-header--transparent .nav-toggle__bars span { background: #fff; }
+
+  /* Once scrolled, the transparent header solidifies so links stay legible. */
+  .site-header--transparent.is-stuck {
+    background: var(--bone);
+    border-bottom-color: var(--line);
+  }
+  .site-header--transparent.is-stuck .site-nav a,
+  .site-header--transparent.is-stuck .nav-toggle { color: var(--ink); }
+  .site-header--transparent.is-stuck .nav-toggle__bars span { background: var(--ink); }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: var(--wrap);
+    margin-inline: auto;
+    padding: 0.85rem var(--gutter);
+  }
+
+  .site-header__brand {
+    flex-shrink: 0;
+    line-height: 0;
+  }
+  .site-header__brand :global(img) {
+    width: clamp(132px, 17vw, 194px);
+    height: auto;
+  }
+
+  /* Two colourways of the same mark — no flash, and no filter trickery (the
+     source artwork isn't transparent, so a filter would whiten the whole box).
+     Selectors get progressively more specific so later states reliably win:
+     default (2) -> over-hero (3) -> scrolled (4). */
+  .site-header__brand :global(.brand-light) { display: none; }
+  .site-header__brand :global(.brand-dark) { display: block; }
+
+  .site-header--transparent .site-header__brand :global(.brand-light) { display: block; }
+  .site-header--transparent .site-header__brand :global(.brand-dark) { display: none; }
+
+  .site-header--transparent.is-stuck .site-header__brand :global(.brand-light) { display: none; }
+  .site-header--transparent.is-stuck .site-header__brand :global(.brand-dark) { display: block; }
+
+  /* ------------------------------------------------------- desktop nav -- */
+
+  .site-nav { display: none; }
+
+  .site-nav ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.1rem, 2.6vw, 2.6rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-nav li { margin: 0; }
+
+  .site-nav a {
+    position: relative;
+    display: block;
+    padding-block: 0.45em;
+    color: var(--ink);
+    font-size: 0.71rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s var(--ease);
+  }
+  .site-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--brass);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease);
+  }
+  .site-nav a:hover::after,
+  .site-nav a:focus-visible::after,
+  .site-nav a[aria-current='page']::after { transform: scaleX(1); }
+
+  /* -------------------------------------------------------- hamburger -- */
+
+  .nav-toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .nav-toggle__bars {
+    display: block;
+    width: 26px;
+    height: 12px;
+    position: relative;
+  }
+  .nav-toggle__bars span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.35s var(--ease), opacity 0.2s var(--ease);
+  }
+  .nav-toggle__bars span:first-child { top: 0; }
+  .nav-toggle__bars span:last-child { bottom: 0; }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bars span:first-child {
+    transform: translateY(5.25px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bars span:last-child {
+    transform: translateY(-5.25px) rotate(-45deg);
+  }
+
+  /* ------------------------------------------------------ mobile drawer -- */
+
+  .mobile-nav {
+    border-top: 1px solid var(--line);
+    background: var(--bone);
+    padding: 1.5rem var(--gutter) 2.5rem;
+  }
+  .mobile-nav ul {
+    margin: 0 0 1.75rem;
+    padding: 0;
+    list-style: none;
+  }
+  .mobile-nav li {
+    margin: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-nav a {
+    display: block;
+    padding: 0.9em 0;
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 1.65rem;
+    text-decoration: none;
+  }
+  .mobile-nav a[aria-current='page'] { color: var(--brand); }
+  .mobile-nav__meta {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+
+  /* Drawer is mobile-only; above the breakpoint the real nav takes over. */
+  @media (min-width: 62rem) {
+    .site-nav { display: block; }
+    .nav-toggle { display: none; }
+    .mobile-nav { display: none !important; }
+    .site-header__inner { padding-block: 1.1rem; }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const drawer = document.querySelector<HTMLElement>('[data-mobile-nav]');
+
+  const isTransparent = header?.classList.contains('site-header--transparent') ?? false;
+  const syncStuck = () => header?.classList.toggle('is-stuck', window.scrollY > 40);
+
+  if (toggle && drawer) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      drawer.hidden = !open;
+      // Stop the page scrolling behind the open drawer.
+      document.body.style.overflow = open ? 'hidden' : '';
+      // An open drawer needs a solid header behind it, otherwise the bar sits
+      // transparent over the hero while the panel below it is opaque.
+      if (isTransparent) {
+        if (open) header?.classList.add('is-stuck');
+        else syncStuck();
+      }
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Escape closes and returns focus to the button.
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Never leave the drawer open (and the body locked) when the layout
+    // switches to the desktop nav.
+    const desktop = window.matchMedia('(min-width: 62rem)');
+    desktop.addEventListener('change', (event) => {
+      if (event.matches) setOpen(false);
+    });
+  }
+
+  // Solidify a transparent header once the hero starts scrolling away.
+  if (isTransparent) {
+    syncStuck();
+    window.addEventListener('scroll', syncStuck, { passive: true });
+  }
+</script>
