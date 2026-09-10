@@ -30,7 +30,7 @@ src/
   layouts/      BaseLayout: <head>, header, footer, scroll-reveal script
   pages/        One file per route
   styles/       global.css - the whole design system
-public/         Served as-is: favicon, robots.txt, Slow Food logo
+public/         Served as-is: favicon, robots.txt, Slow Food logo, video/
 scripts/        One-off asset preparation (see below)
 legacy/         The previous hand-written HTML site, kept for reference
 ```
@@ -95,6 +95,31 @@ furnessfishmarkets.com. Four supporting images - the two paella pan shots, the
 black-and-white harbour boat and the dawn day boat - are from
 [Pexels](https://www.pexels.com) under the Pexels licence (free for commercial
 use, no attribution required).
+
+## Video
+
+Two videos, handled differently, both kept off the critical path.
+
+**The Oyster Boat clip** is self-hosted at `public/video/oyster-bar.mp4`. It is
+a plain `<video>` with `preload="metadata"` and a poster, so a visitor
+downloads a few KB of header until they actually press play. No JavaScript.
+
+The source was 44MB of HEVC, which Chrome cannot decode. It was re-encoded with
+ffmpeg to H.264 at 640px wide, denoised first because handheld market footage
+compresses badly:
+
+```bash
+ffmpeg -i 45minuteoysterbar.mov -c:v libx264 -crf 31 -preset slower   -pix_fmt yuv420p -vf "hqdn3d=4:3:6:6,scale=640:-2"   -c:a aac -b:a 96k -movflags +faststart public/video/oyster-bar.mp4
+```
+
+A VP9/WebM version was tried and came out consistently *larger* than H.264 on
+this footage, so it was dropped: one MP4 plays everywhere anyway.
+
+**The company film** is on YouTube, embedded through a facade in
+`VideoBlock.astro`. YouTube's real embed pulls in the best part of a megabyte
+of script on page load, which would undo the rest of this site, so the page
+renders our own poster and only builds the `youtube-nocookie.com` iframe once
+someone clicks. Total JavaScript for the whole site is still 2.4 KB.
 
 ## Known gaps
 

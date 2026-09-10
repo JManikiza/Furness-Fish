@@ -1,0 +1,200 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/**
+ * Two kinds of video, one component.
+ *
+ * Self-hosted (`src`): a plain <video> with a poster and preload="metadata",
+ * so nothing but a few KB of header downloads until someone presses play.
+ * No JavaScript at all.
+ *
+ * YouTube (`youtubeId`): a facade. YouTube's real embed drags in the best part
+ * of a megabyte of script on page load, which would undo the rest of this site.
+ * Instead we show our own poster and only build the (cookie-less) iframe once
+ * the visitor actually clicks.
+ */
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  /** Path to a self-hosted file in /public, e.g. '/video/oyster-bar.mp4'. */
+  src?: string;
+  /** Poster for a self-hosted video, also from /public. */
+  poster?: string;
+  /** YouTube video id, for the click-to-load facade. */
+  youtubeId?: string;
+  /** Imported image used as the facade poster. */
+  posterImage?: ImageMetadata;
+  posterAlt?: string;
+  /** CSS aspect-ratio for the frame, e.g. '16 / 9' or '640 / 992'. */
+  aspect?: string;
+  /** Max width of the video itself; portrait clips want a narrow column. */
+  maxWidth?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  src,
+  poster,
+  youtubeId,
+  posterImage,
+  posterAlt = '',
+  aspect = '16 / 9',
+  maxWidth = '58rem',
+} = Astro.props;
+---
+
+<section class="videoblock section section--ink">
+  <div class="wrap">
+    <div class="videoblock__head" data-reveal>
+      {eyebrow && <p class="eyebrow eyebrow--center">{eyebrow}</p>}
+      <h2>{title}</h2>
+      <slot />
+    </div>
+
+    <div class="videoblock__frame" style={`--vb-aspect:${aspect};--vb-max:${maxWidth}`} data-reveal>
+      {
+        src ? (
+          <video controls preload="metadata" playsinline poster={poster}>
+            <source src={src} type="video/mp4" />
+            Your browser cannot play this video.
+            <a href={src}>Download it instead</a>.
+          </video>
+        ) : (
+          <div class="facade" data-yt={youtubeId} data-title={title}>
+            {posterImage && (
+              <Image
+                src={posterImage}
+                alt={posterAlt}
+                widths={[480, 760, 1100]}
+                sizes="(min-width: 60rem) 58rem, 92vw"
+                loading="lazy"
+              />
+            )}
+            <button class="facade__play" type="button" data-yt-play>
+              <span class="facade__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" focusable="false">
+                  <path d="M8 5.5v13l11-6.5z" fill="currentColor" />
+                </svg>
+              </span>
+              <span class="visually-hidden">Play the film: {title}</span>
+            </button>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .videoblock__head {
+    max-width: 46ch;
+    margin: 0 auto clamp(2.25rem, 4.5vw, 3.25rem);
+    text-align: center;
+  }
+  .videoblock__head :global(p:not(.eyebrow)) {
+    color: var(--muted-on-dark);
+    margin-bottom: 0;
+  }
+
+  .videoblock__frame {
+    width: 100%;
+    max-width: var(--vb-max);
+    margin-inline: auto;
+  }
+
+  .videoblock__frame video,
+  .facade {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--vb-aspect);
+    border-radius: var(--radius);
+    background: #000;
+  }
+  .videoblock__frame video { object-fit: cover; }
+
+  /* ------------------------------------------------------- yt facade -- */
+
+  .facade {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .facade :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s var(--ease), opacity 0.5s var(--ease);
+  }
+  .facade::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 28, 39, 0.3);
+    transition: background-color 0.4s var(--ease);
+  }
+
+  .facade__play {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .facade__icon {
+    display: grid;
+    place-items: center;
+    width: clamp(4rem, 8vw, 5.5rem);
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+    background: rgba(7, 28, 39, 0.35);
+    color: #fff;
+    padding-left: 4px;
+    backdrop-filter: blur(2px);
+    transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .facade__play:hover .facade__icon,
+  .facade__play:focus-visible .facade__icon {
+    background: var(--brass);
+    border-color: var(--brass);
+    transform: scale(1.06);
+  }
+  .facade__play:hover ~ :global(img) { transform: scale(1.03); }
+
+  .facade :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    z-index: 3;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-yt]').forEach((facade) => {
+    const button = facade.querySelector<HTMLButtonElement>('[data-yt-play]');
+    const id = facade.dataset.yt;
+    if (!button || !id) return;
+
+    button.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      // youtube-nocookie + autoplay, only ever built after a real click.
+      frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+      frame.title = facade.dataset.title ?? 'Video';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      frame.allowFullscreen = true;
+      facade.replaceChildren(frame);
+    });
+  });
+</script>

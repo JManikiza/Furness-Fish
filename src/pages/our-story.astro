@@ -3,10 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Feature from '../components/Feature.astro';
 import CtaBand from '../components/CtaBand.astro';
+import VideoBlock from '../components/VideoBlock.astro';
 import { team } from '../data/site';
 
 import teamPhoto from '../assets/team-counter.jpg';
-import harbourBoat from '../assets/harbour-boat-bw.jpg';
+import lesSrNet from '../assets/les-sr-net.jpg';
+import lesSrSands from '../assets/les-sr-sands.jpg';
 import jamieSpread from '../assets/jamie-spread.jpg';
 import counterCustomers from '../assets/counter-customers.jpg';
 import counterCreels from '../assets/counter-creels.jpg';
@@ -37,8 +39,9 @@ import counterCreels from '../assets/counter-creels.jpg';
   </section>
 
   <Feature
-    image={harbourBoat}
-    alt="A working fishing boat moored at a harbour, photographed in black and white"
+    image={lesSrNet}
+    alt="Leslie Salisbury Sr. in yellow oilskins, holding a shrimp net out across the Morecambe Bay sands"
+    caption="Leslie Salisbury Sr. on the sands"
     eyebrow="Where it began"
     title="A horse, a cart, and the Morecambe sands"
   >
@@ -74,6 +77,21 @@ import counterCreels from '../assets/counter-creels.jpg';
       market. Les would tell you that is overdoing it. Everyone else would tell you it is not.
     </p>
   </Feature>
+
+  <VideoBlock
+    youtubeId="ZU2edxuDltk"
+    posterImage={lesSrSands}
+    posterAlt="Two shrimpers in yellow oilskins standing on the mirror-flat sands of Morecambe Bay"
+    eyebrow="On film"
+    title="Furness Fish & Game Supplies"
+    aspect="16 / 9"
+    maxWidth="44rem"
+  >
+    <p>
+      Tim Sutcliffe's film about the family and the trade: the sands, the boats and the counter, and
+      what it actually takes to get one from the other.
+    </p>
+  </VideoBlock>
 
   <!-- ------------------------------------------------------------- team -- -->
   <section class="section section--ink">

@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import Feature from '../components/Feature.astro';
 import CatchList from '../components/CatchList.astro';
 import CtaBand from '../components/CtaBand.astro';
+import VideoBlock from '../components/VideoBlock.astro';
 import { oysters as oysterVarieties, site } from '../data/site';
 
 import oystersImg from '../assets/oysters.jpg';
@@ -74,6 +75,20 @@ import oysterBarQueue from '../assets/oyster-bar-queue.jpg';
       There is nowhere to sit and that is deliberate: it keeps the ice moving and the queue talking.
     </p>
   </Feature>
+
+  <VideoBlock
+    src="/video/oyster-bar.mp4"
+    poster="/video/oyster-bar-poster.jpg"
+    eyebrow="Forty-five minutes of an ordinary day"
+    title="This is what it looks like"
+    aspect="640 / 992"
+    maxWidth="24rem"
+  >
+    <p>
+      Three quarters of an hour at the Boat, squeezed into forty-two seconds. Filmed over the
+      counter on a normal trading day. Sound on, if you are somewhere you can.
+    </p>
+  </VideoBlock>
 
   <Feature
     image={carlingfordOyster}

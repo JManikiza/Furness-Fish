@@ -8,7 +8,7 @@ export const site = {
   name: 'Furness Fish Market',
   tagline: 'Borough Market, London - since 1998',
   description:
-    'A Morecambe Bay fishing family holding the finest fish counter in Borough Market. Day-boat fish, an oyster bar and the Bomba paella, twelve hours from the water.',
+    'A Morecambe Bay fishing family holding the finest fish counter in Borough Market. Day-boat fish, an oyster bar and a paella mar y montaña, twelve hours from the water.',
   instagram: {
     market: { handle: 'FurnessFishMarket', url: 'https://www.instagram.com/furnessfishmarket/' },
     oysterBar: { handle: 'FurnessOysterBar', url: 'https://www.instagram.com/furnessoysterbar/' },
