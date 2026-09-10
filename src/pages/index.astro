@@ -9,26 +9,26 @@ import { pillars, site } from '../data/site';
 
 import heroCounter from '../assets/counter-lantern.jpg';
 import counterMonkfish from '../assets/counter-monkfish.jpg';
-import oysterBoard from '../assets/oyster-bar-board.jpg';
-import shopfront from '../assets/shopfront.jpg';
-import jamieSpread from '../assets/jamie-spread.jpg';
+import oysterBarBoat from '../assets/oyster-bar-boat.jpg';
+import paellaSketch from '../assets/paella-sketch.jpg';
+import harbourBoat from '../assets/harbour-boat-bw.jpg';
 import team from '../assets/team-counter.jpg';
 import counterWide from '../assets/counter-wide.jpg';
 
-import oysters from '../assets/oysters.jpg';
+import carlingfordOyster from '../assets/carlingford-oyster.jpg';
 import mulletClams from '../assets/mullet-clams.jpg';
-import counterTuna from '../assets/counter-tuna.jpg';
-import counterCustomers from '../assets/counter-customers.jpg';
-import scallops from '../assets/scallops.jpg';
-import counterCreels from '../assets/counter-creels.jpg';
+import langoustines from '../assets/langoustines.jpg';
+import scallopShellsOpen from '../assets/scallop-shells-open.jpg';
+import seaUrchins from '../assets/sea-urchins.jpg';
+import oysterBarQueue from '../assets/oyster-bar-queue.jpg';
 
 const instaTiles = [
   { image: mulletClams, alt: 'Red mullet, clams and cavolo nero laid out on crushed ice', account: 'market' as const },
-  { image: oysters, alt: 'A bed of oysters on the half shell', account: 'oysterBar' as const },
-  { image: counterTuna, alt: 'Tuna loin, snapper and scallops with handwritten price cards', account: 'market' as const },
-  { image: scallops, alt: 'Hand-dived scallops in the shell', account: 'oysterBar' as const },
-  { image: counterCustomers, alt: 'Customers choosing fish across the Furness counter', account: 'market' as const },
-  { image: counterCreels, alt: 'Lobster creels and driftwood above the fish display', account: 'market' as const },
+  { image: carlingfordOyster, alt: 'A Carlingford oyster opened on the half shell', account: 'oysterBar' as const },
+  { image: langoustines, alt: 'Live langoustines lined up across the counter', account: 'market' as const },
+  { image: scallopShellsOpen, alt: 'Hand-dived scallops opened in the shell with the coral attached', account: 'oysterBar' as const },
+  { image: seaUrchins, alt: 'A row of sea urchins on ice', account: 'oysterBar' as const },
+  { image: oysterBarQueue, alt: 'The queue at the Furness Oyster Bar in Borough Market', account: 'oysterBar' as const },
 ];
 ---
 
@@ -51,7 +51,7 @@ const instaTiles = [
       <p class="eyebrow eyebrow--center">No fishy business</p>
       <p class="lede">
         Most fish in London has passed through three sets of hands and two cold stores before it
-        reaches a counter. Ours has passed through one — the person who caught it. Ask Max what is
+        reaches a counter. Ours has passed through one - the person who caught it. Ask Max what is
         good this morning and he will not reach for a list. He will tell you which boat it came off,
         what time it landed, and exactly what to do with it when you get home.
       </p>
@@ -87,26 +87,27 @@ const instaTiles = [
   >
     <p>
       Turbot off a Brighton day boat. Dover sole from Cornwall. Shetland monkfish with shoulders on
-      it. Squid cleaned that morning, cod cheeks trimmed while you wait, and a slab of AAA yellowfin
-      that has never once been frozen.
+      it. Squid whole off the boat and cleaned to order if you want it done there and then, cod
+      cheeks trimmed while you wait, and a slab of AAA grade yellowfin.
     </p>
     <p>
       Whatever you pick, it gets filleted, pin-boned, scaled or butterflied across the marble in front
-      of you — because a fishmonger who will not do that is really just a shop.
+      of you - because a fishmonger who will not do that is really just a shop.
     </p>
     <p class="btn-row"><a class="link" href="/the-counter/">See the full counter</a></p>
   </Feature>
 
   <Feature
-    image={oysterBoard}
-    alt="The Furness Oyster Bar board listing Belon natives and Spéciales Fines de Claire"
+    image={oysterBarBoat}
+    alt="The Furness Oyster Bar, a wooden boat packed with ice and oysters under hanging lanterns"
     eyebrow="The Oyster Boat"
     title="Shucked while you stand there"
     flip
   >
     <p>
-      Belon natives with that flat, metallic bite. Tarbouriech Spéciales, grown on a tide machine and
-      deep as a soup spoon. Boudeuse the size of a coin and twice as concentrated.
+      Louët-Feissers off Carlingford Lough, grown in suspended baskets into a perfect tear-drop. The
+      Alanna, a world exclusive to this counter. Connemaras from a bay that has been farmed since
+      1893. Gillardeau, Ostra Regal, and a Devon XXL far too big for one polite mouthful.
     </p>
     <p>
       No table, no booking, no ceremony. You stand at the Boat with a cold glass in one hand, Fred
@@ -116,19 +117,19 @@ const instaTiles = [
   </Feature>
 
   <Feature
-    image={shopfront}
-    alt="The Furness Fish Market stall front with the Bomba Paella board above the hot counter"
+    image={paellaSketch}
+    alt="A watercolour sketch of the Bomba paella held up in front of the pan at the hot counter"
     eyebrow="The hot counter"
     title="A paella pan you can hear from Middle Road"
   >
     <p>
-      Saffron, bomba rice, chorizo, mussels, prawns and squid, going in the pan from opening and
-      turned over all day long. Chef Ryan does not portion it out early — you get it lifted straight
-      from the pan, socarrat and all.
+      Saffron, mussels, prawns, lobster tails and XL Madagascan tiger prawns, going in the pan from
+      opening and turned over all day long. Chef Ryan does not portion it out early. You get it
+      lifted straight from the pan, socarrat and all.
     </p>
     <p>
-      Alongside it: Shetland salt-and-pepper chilli squid, and whatever else is worth cooking that
-      day. Eat it standing in the market with your fingers. That is the correct way.
+      Eat it standing in the market, out of the box, with a wooden fork, ideally while it is still
+      too hot. That is the correct way and we will not be taking questions.
     </p>
     <p class="btn-row"><a class="link" href="/paella/">Chef Ryan's paella</a></p>
   </Feature>
@@ -139,8 +140,8 @@ const instaTiles = [
       <div class="story">
         <figure class="story__media" data-reveal>
           <Image
-            src={jamieSpread}
-            alt="A spread from Jamie Oliver's Jamie's Kitchen showing Les Salisbury holding a monkfish, captioned 'the heroes of Borough Market'"
+            src={harbourBoat}
+            alt="A working fishing boat moored at a harbour, photographed in black and white"
             widths={[420, 700, 1000]}
             sizes="(min-width: 60rem) 40vw, 88vw"
             loading="lazy"
@@ -148,12 +149,13 @@ const instaTiles = [
         </figure>
 
         <div class="story__body" data-reveal data-reveal-delay="120">
-          <p class="eyebrow">Since 1998 — and long before that</p>
+          <p class="eyebrow">Since 1998 - and long before that</p>
           <h2>It started with a horse and cart on Morecambe sands</h2>
           <p>
             Leslie Salisbury Sr. learned to fish the brown shrimp beds from old Jack Butler, working
-            the sands the traditional way — a horse, a cart, and an unreasonable tolerance for cold
-            water. What he built became the biggest potted shrimp business in the world.
+            the sands the traditional way, with a horse, a cart, and an unreasonable tolerance for
+            cold water. What he built became the biggest potted shrimp business in the world, and
+            his recipe is still the one we pot to.
           </p>
           <p>
             His son Les fished those same beds as a boy, then took the family north to Ulverston,
@@ -175,12 +177,12 @@ const instaTiles = [
     image={team}
     alt="The Furness Fish Market team lined up behind the counter"
     eyebrow="The people behind it"
-    title="Nine people, one counter, no shortcuts"
+    title="One counter, one team, no shortcuts"
   >
     <p class="lede">
-      Max on the floor. Jessel, Peter, Harry and Dean on the knives. Darius, Fred and Jack on oysters
-      and caviar. Ryan on the pans. Between them they have forgotten more about fish than most
-      restaurants will ever learn.
+      Max on the floor. Peter and Harry on the knives. Darius, Fred and Jack on oysters and caviar.
+      Ryan on the pans. Between them they have forgotten more about fish than most restaurants will
+      ever learn.
     </p>
     <div class="btn-row"><a class="btn btn--light" href="/our-story/">Meet the team</a></div>
   </CtaBand>
@@ -195,8 +197,8 @@ const instaTiles = [
     title="Come and stand in front of it"
   >
     <p class="lede">
-      6 Southwark Street, on the Borough Market corner, two minutes from London Bridge. Come early if
-      you want the turbot — it does not hang about.
+      8 Southwark Street, on the Borough Market corner, two minutes from London Bridge. Come early if
+      you want the turbot - it does not hang about.
     </p>
     <div class="btn-row"><a class="btn btn--light" href="/visit/">Opening hours &amp; directions</a></div>
   </CtaBand>

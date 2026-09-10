@@ -1,25 +1,25 @@
 /* ==========================================================================
-   Furness Fish Market — design system
+   Furness Fish Market - design system
    Palette is built from the crest blue (#0070A0) sampled from the brand mark.
    ========================================================================== */
 
 :root {
-  /* Ink — the deep-sea anchor used for hero overlays, footer and dark bands */
+  /* Ink - the deep-sea anchor used for hero overlays, footer and dark bands */
   --ink: #071c27;
   --ink-2: #0d2b3a;
   --ink-3: #143e53;
 
-  /* Brand — the crest blue */
+  /* Brand - the crest blue */
   --brand: #0070a0;
   --brand-2: #04587e;
   --brand-pale: #dceaf1;
 
-  /* Paper — warm bone, not white. White reads cheap at this size. */
+  /* Paper - warm bone, not white. White reads cheap at this size. */
   --bone: #f7f3eb;
   --bone-2: #efe8db;
   --paper: #fdfbf7;
 
-  /* Brass — the single metallic accent. Used sparingly: rules, eyebrows, hovers. */
+  /* Brass - the single metallic accent. Used sparingly: rules, eyebrows, hovers. */
   --brass: #a8823f;
   --brass-2: #c9a869;
 
@@ -142,7 +142,7 @@ hr {
 /* ---------------------------------------------------------- typography -- */
 
 /* Small-caps label above a heading. The single most "luxury" typographic move
-   in the whole system — used on nearly every section. */
+   in the whole system - used on nearly every section. */
 .eyebrow {
   display: flex;
   align-items: center;
@@ -173,7 +173,7 @@ hr {
 }
 .section--ink .eyebrow { color: var(--brass-2); }
 
-/* Opening paragraph of a section — larger, lighter, serif */
+/* Opening paragraph of a section - larger, lighter, serif */
 .lede {
   font-family: var(--display);
   font-size: clamp(1.3rem, 1.05rem + 1.05vw, 1.85rem);

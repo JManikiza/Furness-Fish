@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import counterCustomers from '../assets/counter-customers.jpg';
+
+// Where Web3Forms sends anyone whose browser posted the form without JS.
+---
+
+<BaseLayout title="Thank you" description="Your enquiry has reached the counter.">
+  <Hero
+    image={counterCustomers}
+    alt=""
+    eyebrow="Enquiry received"
+    title="That has reached the counter"
+    lede="Someone will come back to you shortly. We are quick on most things, though rather less so on a Monday, when we are shut."
+  >
+    <a class="btn btn--light" href="/">Back to the front</a>
+    <a class="btn btn--light" href="/the-counter/">See the counter</a>
+  </Hero>
+</BaseLayout>

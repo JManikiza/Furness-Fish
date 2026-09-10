@@ -16,7 +16,7 @@ const isCurrent = (href: string) => path === href || path === href.replace(/\/$/
 
 <header class:list={['site-header', transparent && 'site-header--transparent']} data-header>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="/" aria-label={`${site.name} — home`}>
+    <a class="site-header__brand" href="/" aria-label={`${site.name} - home`}>
       <Image class="brand-dark" src={wordmark} alt={site.name} width={601} height={251} loading="eager" />
       <Image class="brand-light" src={wordmarkWhite} alt="" width={601} height={251} loading="eager" aria-hidden="true" />
     </a>
@@ -58,8 +58,8 @@ const isCurrent = (href: string) => path === href || path === href.replace(/\/$/
       </ul>
     </nav>
     <p class="mobile-nav__meta">
-      6 Southwark Street · Borough Market<br />
-      Tue–Sat 8am–5pm · Sun 8am–4pm
+      8 Southwark Street · Borough Market<br />
+      Tue-Sat 8am-5pm · Sun 8am-4pm
     </p>
   </div>
 </header>
@@ -114,7 +114,7 @@ const isCurrent = (href: string) => path === href || path === href.replace(/\/$/
     height: auto;
   }
 
-  /* Two colourways of the same mark — no flash, and no filter trickery (the
+  /* Two colourways of the same mark - no flash, and no filter trickery (the
      source artwork isn't transparent, so a filter would whiten the whole box).
      Selectors get progressively more specific so later states reliably win:
      default (2) -> over-hero (3) -> scrolled (4). */

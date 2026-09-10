@@ -1,6 +1,6 @@
 # Furness Fish Market
 
-Brochure site for Furness Fish Market, Borough Market, London — built with
+Brochure site for Furness Fish Market, Borough Market, London - built with
 [Astro](https://astro.build). No ordering, no cart, no backend: it renders to
 static HTML at build time and ships essentially no JavaScript.
 
@@ -26,10 +26,10 @@ npm run dev      # http://localhost:4321
 src/
   assets/       Photography. Astro resizes + converts these to WebP at build.
   components/   Header, Footer, Hero, Feature, CatchList, CtaBand, InstagramStrip
-  data/site.ts  Nav, contact details, hours, the catch, the team — edit here
+  data/site.ts  Nav, contact details, hours, the catch, the team - edit here
   layouts/      BaseLayout: <head>, header, footer, scroll-reveal script
   pages/        One file per route
-  styles/       global.css — the whole design system
+  styles/       global.css - the whole design system
 public/         Served as-is: favicon, robots.txt, Slow Food logo
 scripts/        One-off asset preparation (see below)
 legacy/         The previous hand-written HTML site, kept for reference
@@ -38,21 +38,21 @@ legacy/         The previous hand-written HTML site, kept for reference
 ### Editing content
 
 Almost everything that appears in more than one place lives in
-[`src/data/site.ts`](src/data/site.ts) — opening hours, the address, the
+[`src/data/site.ts`](src/data/site.ts) - opening hours, the address, the
 Instagram handles, the fish list, the oyster varieties, the team roster. Change
 it there and it updates across every page.
 
 ### The design system
 
 [`src/styles/global.css`](src/styles/global.css) holds the whole thing as CSS
-custom properties — colours, type scale, spacing, layout widths.
+custom properties - colours, type scale, spacing, layout widths.
 
-- **Brand blue `#0070A0`** — sampled directly from the crest artwork
-- **Ink `#071C27`** — deep sea navy for hero scrims, footer, dark bands
-- **Bone `#F7F3EB`** — warm paper ground (white reads cheap at this scale)
-- **Brass `#A8823F`** — the single metallic accent, used only on rules,
+- **Brand blue `#0070A0`** - sampled directly from the crest artwork
+- **Ink `#071C27`** - deep sea navy for hero scrims, footer, dark bands
+- **Bone `#F7F3EB`** - warm paper ground (white reads cheap at this scale)
+- **Brass `#A8823F`** - the single metallic accent, used only on rules,
   eyebrow labels and hover states
-- **Type** — Cormorant Garamond for display, Jost for body and UI
+- **Type** - Cormorant Garamond for display, Jost for body and UI
 
 Everything scales with `clamp()` rather than breakpoint jumps, so it's fluid
 between sizes rather than snapping.
@@ -68,7 +68,7 @@ lock) below 62rem.
 
 Skip link, landmark elements, `aria-current` on the active nav item, visible
 focus rings, alt text on all meaningful images (decorative ones are `alt=""`),
-and `prefers-reduced-motion` honoured — the scroll-reveal animation is disabled
+and `prefers-reduced-motion` honoured - the scroll-reveal animation is disabled
 entirely for anyone who asks for it, and content renders visible without JS.
 
 ## Images
@@ -82,15 +82,17 @@ once by the scripts in `scripts/`:
 | `prepare-assets.mjs`   | Curate, EXIF-rotate and downscale the shop's own photography            |
 | `make-wordmark.mjs`    | Derive transparent navy + white wordmarks from the original opaque logo |
 | `fetch-stock.mjs`      | Pull the handful of royalty-free supporting shots                       |
-| `contact-sheet.mjs`    | Montage stock candidates into one sheet for reviewing                   |
+| `contact-sheet.mjs`    | Montage stock candidates into one sheet for reviewing                    |
+| `add-assets.mjs`       | Second batch: the transparent logo, oyster bar, paella sketch, stills    |
 
-These are one-off tools, not part of the build — `npm run build` doesn't
+These are one-off tools, not part of the build - `npm run build` doesn't
 invoke them.
 
-**Provenance:** the shop's own photographs (counter, team, shopfront, oyster
-bar, the Jamie Oliver spread) come from the existing archive and from
-furnessfishmarkets.com. Four supporting images — the two paella shots, the
-black-and-white harbour boat and the dawn day boat — are from
+**Provenance:** the shop's own photographs (counter, team, shopfront, the
+Oyster Boat, the paella sketch, the Jamie Oliver spread, and stills pulled from
+the stall's own videos) come from the existing archive and from
+furnessfishmarkets.com. Four supporting images - the two paella pan shots, the
+black-and-white harbour boat and the dawn day boat - are from
 [Pexels](https://www.pexels.com) under the Pexels licence (free for commercial
 use, no attribution required).
 
@@ -100,11 +102,15 @@ use, no attribution required).
   was retired and scraping needs auth, so the tiles are hand-picked stills that
   link out to both accounts. A live feed means the Instagram Graph API (needs a
   linked Facebook business account) or a hosted widget like Behold or
-  EmbedSocial — swapping `InstagramStrip.astro` is a contained change.
-- **There is no contact form.** The Visit page gives the email address, both
-  Instagram accounts, hours and directions instead. A static site can't process
-  a form on its own, and a form that silently fails is worse than none — adding
-  one means Formspree, Netlify Forms or similar.
+  EmbedSocial - swapping `InstagramStrip.astro` is a contained change.
+- **The contact form needs one access key before it sends.** The enquiry form
+  on the Visit page posts to [Web3Forms](https://web3forms.com) (free, no
+  submission limit). Enter `furnessfishmarket@gmail.com` on their site, they
+  email an access key back, and you paste it into `contact.formAccessKey` in
+  [`src/data/site.ts`](src/data/site.ts). Until then the page renders the email
+  address instead of the form, so nothing ever pretends to work. With JS the
+  form submits inline; without JS the plain POST still goes through and lands on
+  `/thank-you/`.
 
 ## Deploying
 

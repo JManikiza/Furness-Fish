@@ -5,46 +5,45 @@ import Feature from '../components/Feature.astro';
 import CtaBand from '../components/CtaBand.astro';
 
 import paellaPan from '../assets/paella-pan.jpg';
+import paellaSketch from '../assets/paella-sketch.jpg';
 import paellaOverhead from '../assets/paella-overhead.jpg';
-import shopfront from '../assets/shopfront.jpg';
-import octopus from '../assets/octopus.jpg';
+import langoustines from '../assets/langoustines.jpg';
 import counterMonk from '../assets/counter-monk.jpg';
 
 const ingredients = [
-  { name: 'Bomba rice', note: 'The short, stubborn Valencian grain that drinks three times its volume in stock and still refuses to go to mush.' },
   { name: 'Saffron', note: 'Real threads, bloomed in hot stock. It is the expensive bit and there is no substitute worth using.' },
-  { name: 'Chorizo', note: 'Rendered down first so the paprika oil goes through everything that follows.' },
   { name: 'Mussels', note: 'Hand-gathered Shetland, straight off our own counter, opened in the pan.' },
   { name: 'Prawns', note: 'Shell-on and laid on top, so they steam rather than boil and stay sweet.' },
-  { name: 'Squid', note: 'Cleaned that morning across the marble, cut thick, added late.' },
+  { name: 'Lobster tails', note: 'Split and set into the pan late, so they are just set through and nothing more.' },
+  { name: 'XL Madagascan tiger prawns', note: 'The size of your hand, and the reason people stop walking to look at the pan.' },
 ];
 ---
 
 <BaseLayout
   title="The Paella"
-  description="The Furness Bomba paella — saffron, bomba rice, chorizo, mussels, prawns and squid, cooked all day at the front of the stall in Borough Market by Chef Ryan."
+  description="The Furness paella - saffron, mussels, prawns, lobster tails and XL Madagascan tiger prawns, cooked all day at the front of the stall in Borough Market by Chef Ryan."
   transparentHeader
 >
   <Hero
     image={paellaPan}
-    alt="An enormous paella pan filled with seafood rice cooking at a market"
+    alt="An enormous paella pan filled with seafood cooking at a market"
     eyebrow="The hot counter"
     title="A pan you can hear from Middle Road"
-    lede="Saffron, bomba rice, chorizo, mussels, prawns and squid — going from opening, turned over all day, and served straight from the pan with the socarrat still on it."
+    lede="Saffron, mussels, prawns, lobster tails and XL Madagascan tiger prawns, going from opening, turned over all day, and served straight from the pan with the socarrat still on it."
   />
 
   <section class="section section--tight">
     <div class="wrap wrap--mid" data-reveal>
-      <p class="eyebrow">Bomba paella</p>
+      <p class="eyebrow">The Furness paella</p>
       <p class="lede">
-        Most market food is assembled. This is cooked — in one enormous pan, at the front of the
-        stall, in full view, all day long. You can watch it change from the moment the saffron goes in
-        to the moment Ryan starts scraping the good bits off the bottom.
+        Most market food is assembled. This is cooked, in one enormous pan, at the front of the
+        stall, in full view, all day long. You can watch it change from the moment the saffron goes
+        in to the moment Ryan starts scraping the good bits off the bottom.
       </p>
       <p class="muted" style="margin-top:1.5rem">
         It is not portioned out in advance and it is not sitting in a bain-marie. When you order, it
-        comes off the pan you have been staring at. If you want the crusty base — the
-        <em>socarrat</em> — say so, and you will get it.
+        comes off the pan you have been staring at. If you want the crusty base, the
+        <em>socarrat</em>, say so, and you will get it.
       </p>
     </div>
   </section>
@@ -54,7 +53,7 @@ const ingredients = [
     <div class="wrap">
       <div class="paella__head" data-reveal>
         <p class="eyebrow">What goes in</p>
-        <h2>Six things, done properly</h2>
+        <h2>Five things, done properly</h2>
       </div>
 
       <ul class="paella__grid">
@@ -69,23 +68,23 @@ const ingredients = [
       </ul>
 
       <p class="paella__foot muted" data-reveal>
-        The seafood comes off our own counter, three metres away, on the same morning. That is the
-        entire trick — there is no clever technique that beats using shellfish that was alive
+        The shellfish comes off our own counter, three metres away, on the same morning. That is the
+        entire trick. There is no clever technique that beats using shellfish that was alive
         yesterday.
       </p>
     </div>
   </section>
 
   <Feature
-    image={shopfront}
-    alt="The Furness Fish Market stall front with the Bomba Paella board chalked above the hot counter"
-    eyebrow="Find the board"
-    title="Look up. It is written on the wall."
+    image={paellaSketch}
+    alt="A watercolour sketch of the Furness paella held up in front of the pan at the hot counter"
+    eyebrow="Worth drawing"
+    title="People stand and paint it, which tells you something"
   >
     <p>
-      <strong>Bomba Paella</strong> is chalked up above the hot counter, next to the Shetland
-      salt-and-pepper chilli squid and whatever else is worth cooking that day. If you can see the
-      board, you can see the pan.
+      This one turned up on our counter one afternoon: a customer sat with a sketchbook, watched the
+      pan for a while, and handed this over on the way out. Lobster, prawns and mussels, labelled and
+      dated, Borough Market underneath.
     </p>
     <p>
       Eat it standing in the market, out of the box, with a wooden fork, ideally while it is still
@@ -106,21 +105,20 @@ const ingredients = [
       right about most of them.
     </p>
     <p>
-      Alongside the paella he does Shetland salt-and-pepper chilli squid — flash-fried, sharp with
-      chilli and spring onion — and the rest of the Furness Gourmet Grill, which changes with what is
-      good on the ice.
+      Whatever else is worth cooking that day comes off the same heat, and it changes with what is
+      good on the ice. Ask him what he would have.
     </p>
   </Feature>
 
   <Feature
-    image={octopus}
-    alt="Octopus on ice at the fish counter"
+    image={langoustines}
+    alt="Live langoustines lined up on the fish counter"
     eyebrow="Cook it yourself"
     title="Or we can just sell you the raw materials"
   >
     <p>
       If the pan has given you ideas, everything in it is available three metres away, uncooked.
-      Mussels, prawns, squid, clams and a proper stock-bone bag will set you up for a paella at home
+      Mussels, prawns, lobster tails and a proper stock-bone bag will set you up for a paella at home
       for less than you think.
     </p>
     <p>
@@ -136,7 +134,7 @@ const ingredients = [
     title="The pan goes on when the shutters go up"
   >
     <p class="lede">
-      Tuesday to Saturday 8am–5pm, Sunday 8am–4pm. It is usually gone well before closing on a
+      Tuesday to Saturday 8am-5pm, Sunday 8am-4pm. It is usually gone well before closing on a
       Saturday, so do not leave it too late.
     </p>
     <div class="btn-row">

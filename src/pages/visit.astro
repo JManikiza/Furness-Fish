@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CtaBand from '../components/CtaBand.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
 import { contact, hours, site } from '../data/site';
 
 import shopfront from '../assets/shopfront.jpg';
@@ -10,7 +11,7 @@ import counterCornish from '../assets/counter-cornish.jpg';
 const travel = [
   {
     title: 'Underground & rail',
-    body: 'London Bridge is a two-minute walk — Jubilee and Northern lines, plus the national rail terminal. Come out of the Borough High Street exit and follow Southwark Street.',
+    body: 'London Bridge is a two-minute walk - Jubilee and Northern lines, plus the national rail terminal. Come out of the Borough High Street exit and follow Southwark Street.',
   },
   {
     title: 'Bus',
@@ -22,21 +23,21 @@ const travel = [
   },
   {
     title: 'Parking',
-    body: 'There is no market parking, but several car parks are within walking distance — Union Car Parks and the Snowfields NCP are the usual choices.',
+    body: 'There is no market parking, but several car parks are within walking distance - Union Car Parks and the Snowfields NCP are the usual choices.',
   },
 ];
 ---
 
 <BaseLayout
   title="Visit Us"
-  description="Furness Fish Market, 6 Southwark Street, Borough Market, London SE1 1TL. Open Tuesday to Sunday. Two minutes from London Bridge."
+  description="Furness Fish Market, 8 Southwark Street, Borough Market, London SE1 1TL. Open Tuesday to Sunday. Two minutes from London Bridge."
   transparentHeader
 >
   <Hero
     image={shopfront}
     alt="The Furness Fish Market stall front in Borough Market"
     eyebrow="Visit us"
-    title="6 Southwark Street"
+    title="8 Southwark Street"
     lede="On the corner of Borough Market, two minutes from London Bridge, under the railway arches. You will smell the paella before you see the sign."
   />
 
@@ -71,7 +72,7 @@ const travel = [
             }
           </ul>
           <p class="muted visit__note">
-            Come early for the turbot and the Dover sole — the best of the day boat rarely lasts past
+            Come early for the turbot and the Dover sole - the best of the day boat rarely lasts past
             lunchtime on a Saturday.
           </p>
         </div>
@@ -101,25 +102,19 @@ const travel = [
   </section>
 
   <!-- --------------------------------------------------------- contact -- -->
-  <section class="section section--ink">
+  <section class="section section--ink" id="enquiries">
     <div class="wrap">
-      <div class="visit__grid">
+      <div class="visit__contact">
         <div data-reveal>
           <p class="eyebrow">Get in touch</p>
           <h2>Talk to us before you come</h2>
           <p class="muted">
-            Want something specific held back? Cooking for twenty? After a wholesale order, a private
-            party, or a tin of caviar you would rather we set aside? Email is the quickest way to
-            reach the counter, and it is a person who answers it.
+            Want something specific held back? Cooking for twenty? After a wholesale order, oysters
+            for a party, or a tin of caviar you would rather we set aside? Send it over and a person
+            will answer it.
           </p>
-          <p class="visit__email">
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-          </p>
-        </div>
 
-        <div data-reveal data-reveal-delay="120">
-          <p class="eyebrow">Follow along</p>
-          <h2>Two accounts, both worth it</h2>
+          <p class="eyebrow visit__socials-head">Follow along</p>
           <ul class="visit__socials">
             <li>
               <a href={site.instagram.market.url} target="_blank" rel="noopener noreferrer">
@@ -134,6 +129,10 @@ const travel = [
               </a>
             </li>
           </ul>
+        </div>
+
+        <div data-reveal data-reveal-delay="120">
+          <EnquiryForm />
         </div>
       </div>
     </div>
@@ -187,6 +186,13 @@ const travel = [
   .visit__hours li span:last-child { color: var(--muted); }
   .visit__hours .is-closed span { color: var(--muted); opacity: 0.7; }
   .visit__note { margin-top: 1.5rem; max-width: 42ch; font-size: 0.95rem; }
+
+  .visit__contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+  .visit__socials-head { margin-top: 2.5rem; }
 
   .visit__head {
     max-width: 46ch;
@@ -264,6 +270,7 @@ const travel = [
 
   @media (min-width: 52rem) {
     .visit__grid { grid-template-columns: 1fr 1fr; }
+    .visit__contact { grid-template-columns: 0.85fr 1.15fr; }
     .visit__travel { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
