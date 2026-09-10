@@ -9,6 +9,7 @@ import paellaSketch from '../assets/paella-sketch.jpg';
 import paellaOverhead from '../assets/paella-overhead.jpg';
 import langoustines from '../assets/langoustines.jpg';
 import counterMonk from '../assets/counter-monk.jpg';
+import { withBase } from '../lib/paths';
 
 const ingredients = [
   { name: 'Arroz la Campana', note: 'A Spanish short grain that drinks up three times its own volume of stock and still holds its shape. Not bomba, and better for this.' },
@@ -140,8 +141,8 @@ const ingredients = [
       Saturday, so do not leave it too late.
     </p>
     <div class="btn-row">
-      <a class="btn btn--light" href="/visit/">Opening hours &amp; directions</a>
-      <a class="btn btn--light" href="/the-counter/">See the counter</a>
+      <a class="btn btn--light" href={withBase('/visit/')}>Opening hours &amp; directions</a>
+      <a class="btn btn--light" href={withBase('/the-counter/')}>See the counter</a>
     </div>
   </CtaBand>
 </BaseLayout>

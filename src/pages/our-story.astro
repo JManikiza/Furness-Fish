@@ -12,6 +12,7 @@ import lesSrSands from '../assets/les-sr-sands.jpg';
 import jamieSpread from '../assets/jamie-spread.jpg';
 import counterCustomers from '../assets/counter-customers.jpg';
 import counterCreels from '../assets/counter-creels.jpg';
+import { withBase } from '../lib/paths';
 ---
 
 <BaseLayout
@@ -167,8 +168,8 @@ import counterCreels from '../assets/counter-creels.jpg';
       behind the counter every single one of those days.
     </p>
     <div class="btn-row">
-      <a class="btn btn--light" href="/visit/">Plan your visit</a>
-      <a class="btn btn--light" href="/the-counter/">See the counter</a>
+      <a class="btn btn--light" href={withBase('/visit/')}>Plan your visit</a>
+      <a class="btn btn--light" href={withBase('/the-counter/')}>See the counter</a>
     </div>
   </CtaBand>
 </BaseLayout>

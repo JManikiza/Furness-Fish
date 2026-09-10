@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import counterCustomers from '../assets/counter-customers.jpg';
+import { withBase } from '../lib/paths';
 
 // Where Web3Forms sends anyone whose browser posted the form without JS.
 ---
@@ -14,7 +15,7 @@ import counterCustomers from '../assets/counter-customers.jpg';
     title="That has reached the counter"
     lede="Someone will come back to you shortly. We are quick on most things, though rather less so on a Monday, when we are shut."
   >
-    <a class="btn btn--light" href="/">Back to the front</a>
-    <a class="btn btn--light" href="/the-counter/">See the counter</a>
+    <a class="btn btn--light" href={withBase('/')}>Back to the front</a>
+    <a class="btn btn--light" href={withBase('/the-counter/')}>See the counter</a>
   </Hero>
 </BaseLayout>

@@ -7,6 +7,7 @@ import { contact, hours, site } from '../data/site';
 
 import shopfront from '../assets/shopfront.jpg';
 import counterCornish from '../assets/counter-cornish.jpg';
+import { withBase } from '../lib/paths';
 
 const travel = [
   {
@@ -146,8 +147,8 @@ const travel = [
     position="center 30%"
   >
     <div class="btn-row">
-      <a class="btn btn--light" href="/the-counter/">See the counter</a>
-      <a class="btn btn--light" href="/oyster-bar/">The Oyster Boat</a>
+      <a class="btn btn--light" href={withBase('/the-counter/')}>See the counter</a>
+      <a class="btn btn--light" href={withBase('/oyster-bar/')}>The Oyster Boat</a>
     </div>
   </CtaBand>
 </BaseLayout>

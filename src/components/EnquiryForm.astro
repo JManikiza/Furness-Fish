@@ -1,5 +1,6 @@
 ---
 import { contact } from '../data/site';
+import { withBase } from '../lib/paths';
 
 /**
  * Enquiry form, posted to Web3Forms.
@@ -15,6 +16,8 @@ import { contact } from '../data/site';
  */
 
 const hasKey = contact.formAccessKey.length > 0;
+// Absolute URL, because Web3Forms redirects the no-JS fallback to it.
+const thankYouUrl = new URL(withBase('/thank-you/'), Astro.site).href;
 const enquiryTypes = [
   'General question',
   'Reserve something from the counter',
@@ -30,7 +33,7 @@ const enquiryTypes = [
       <input type="hidden" name="access_key" value={contact.formAccessKey} />
       <input type="hidden" name="subject" value="New enquiry from furnessfishmarkets.com" />
       <input type="hidden" name="from_name" value="Furness Fish Market website" />
-      <input type="hidden" name="redirect" value="https://www.furnessfishmarkets.com/thank-you/" />
+      <input type="hidden" name="redirect" value={thankYouUrl} />
 
       {/* Honeypot: real people never see it, bots fill it in and get dropped. */}
       <label class="enquiry__hp">

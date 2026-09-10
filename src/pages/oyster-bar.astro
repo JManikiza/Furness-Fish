@@ -13,6 +13,7 @@ import carlingfordOyster from '../assets/carlingford-oyster.jpg';
 import seaUrchins from '../assets/sea-urchins.jpg';
 import scallopShellsOpen from '../assets/scallop-shells-open.jpg';
 import oysterBarQueue from '../assets/oyster-bar-queue.jpg';
+import { withBase } from '../lib/paths';
 ---
 
 <BaseLayout
@@ -77,8 +78,8 @@ import oysterBarQueue from '../assets/oyster-bar-queue.jpg';
   </Feature>
 
   <VideoBlock
-    src="/video/oyster-bar.mp4"
-    poster="/video/oyster-bar-poster.jpg"
+    src={withBase('/video/oyster-bar.mp4')}
+    poster={withBase('/video/oyster-bar-poster.jpg')}
     eyebrow="Forty-five minutes of an ordinary day"
     title="This is what it looks like"
     aspect="640 / 992"
@@ -157,7 +158,7 @@ import oysterBarQueue from '../assets/oyster-bar-queue.jpg';
       <a class="btn btn--light" href={site.instagram.oysterBar.url} target="_blank" rel="noopener noreferrer">
         Follow on Instagram
       </a>
-      <a class="btn btn--light" href="/visit/">Find the stall</a>
+      <a class="btn btn--light" href={withBase('/visit/')}>Find the stall</a>
     </div>
   </CtaBand>
 
@@ -174,7 +175,7 @@ import oysterBarQueue from '../assets/oyster-bar-queue.jpg';
     </p>
     <p>
       Tell us your date, rough numbers and where you are on the
-      <a href="/visit/">enquiry form</a>, and we will come back to you with what it would take.
+      <a href={withBase('/visit/')}>enquiry form</a>, and we will come back to you with what it would take.
     </p>
   </Feature>
 </BaseLayout>

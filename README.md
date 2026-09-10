@@ -139,7 +139,34 @@ someone clicks. Total JavaScript for the whole site is still 2.4 KB.
 
 ## Deploying
 
-The build output in `dist/` is plain static files. Netlify, Cloudflare Pages,
-Vercel and GitHub Pages all work; build command `npm run build`, publish
-directory `dist`. Update `site` in [`astro.config.mjs`](astro.config.mjs) if
-the domain changes, since it drives the sitemap and canonical URLs.
+Published to GitHub Pages by [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml),
+which builds on every push to `master`. Nothing is committed from `dist/` -
+the workflow builds it and hands the output to Pages.
+
+**One-time setup:** repo Settings -> Pages -> Source: **GitHub Actions**.
+Without that the workflow has nowhere to publish to.
+
+Live at <https://jmanikiza.github.io/Furness-Fish/>
+
+### The subfolder catch
+
+A GitHub Pages *project* site is served from `/Furness-Fish/`, not the domain
+root, so a bare `href="/visit/"` would 404. Every internal link, asset and
+video path goes through `withBase()` in
+[`src/lib/paths.ts`](src/lib/paths.ts), which prefixes
+`import.meta.env.BASE_URL`.
+
+`public/.nojekyll` is there so Pages never strips the `_astro/` directory.
+The Actions deploy path doesn't run Jekyll anyway, but it costs nothing.
+
+### Moving to furnessfishmarkets.com later
+
+Wix cannot host this - it has no way to accept a built static site - so the
+domain has to move off Wix first. Then:
+
+1. `astro.config.mjs`: `site: 'https://www.furnessfishmarkets.com'`, `base: '/'`
+2. Add `public/CNAME` containing `www.furnessfishmarkets.com`
+3. Point DNS at GitHub Pages, and set the custom domain in repo Settings -> Pages
+
+Because everything already goes through `withBase()`, step 1 is the only code
+change - no link rewriting needed.
