@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Feature from '../components/Feature.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+import paellaPan from '../assets/paella-pan.jpg';
+import paellaSketch from '../assets/paella-sketch.jpg';
+import paellaOverhead from '../assets/paella-overhead.jpg';
+import langoustines from '../assets/langoustines.jpg';
+import counterMonk from '../assets/counter-monk.jpg';
+
+const ingredients = [
+  { name: 'Arroz la Campana', note: 'A Spanish short grain that drinks up three times its own volume of stock and still holds its shape. Not bomba, and better for this.' },
+  { name: 'Saffron', note: 'Real threads, bloomed in hot stock. It is the expensive bit and there is no substitute worth using.' },
+  { name: 'Chicken', note: 'The montaña half of the dish. Browned off first so the pan starts with something to build on.' },
+  { name: 'Mussels', note: 'Hand-gathered Shetland, straight off our own counter, opened in the pan.' },
+  { name: 'Prawns', note: 'Shell-on and laid on top, so they steam rather than boil and stay sweet.' },
+  { name: 'Lobster tails', note: 'Split and set into the pan late, so they are just set through and nothing more.' },
+  { name: 'XL Madagascan tiger prawns', note: 'The size of your hand, and the reason people stop walking to look at the pan.' },
+];
+---
+
+<BaseLayout
+  title="The Paella"
+  description="The Furness paella mar y montaña - Arroz la Campana rice, saffron, chicken, mussels, prawns, lobster tails and XL Madagascan tiger prawns, cooked all day at the front of the stall in Borough Market."
+  transparentHeader
+>
+  <Hero
+    image={paellaPan}
+    alt="An enormous paella pan filled with seafood cooking at a market"
+    eyebrow="The hot counter"
+    title="A pan you can hear from Middle Road"
+    lede="Arroz la Campana, saffron, chicken, mussels, prawns, lobster tails and XL Madagascan tiger prawns. Sea and mountain in one pan, going from opening and served with the socarrat still on it."
+  />
+
+  <section class="section section--tight">
+    <div class="wrap wrap--mid" data-reveal>
+      <p class="eyebrow">Paella mar y montaña</p>
+      <p class="lede">
+        Ours is a <em>mar y montaña</em>: the old Spanish habit of putting the sea and the hillside
+        in the same pan, so chicken and shellfish end up sharing a stock and improving each other.
+        It is cooked in one enormous pan at the front of the stall, in full view, all day long.
+      </p>
+      <p class="muted" style="margin-top:1.5rem">
+        It is not portioned out in advance and it is not sitting in a bain-marie. When you order, it
+        comes off the pan you have been staring at. If you want the crusty base, the
+        <em>socarrat</em>, say so, and you will get it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------ ingredients -- -->
+  <section class="section section--ink">
+    <div class="wrap">
+      <div class="paella__head" data-reveal>
+        <p class="eyebrow">What goes in</p>
+        <h2>Seven things, done properly</h2>
+      </div>
+
+      <ul class="paella__grid">
+        {
+          ingredients.map((item, index) => (
+            <li data-reveal data-reveal-delay={(index % 3) * 90}>
+              <h3>{item.name}</h3>
+              <p>{item.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="paella__foot muted" data-reveal>
+        The shellfish comes off our own counter, three metres away, on the same morning. That is the
+        entire trick. There is no clever technique that beats using shellfish that was alive
+        yesterday, and no rice worth eating that was cooked in yesterday's stock.
+      </p>
+    </div>
+  </section>
+
+  <Feature
+    image={paellaSketch}
+    alt="A watercolour sketch of the Furness paella held up in front of the pan at the hot counter"
+    eyebrow="Worth drawing"
+    title="People stand and paint it, which tells you something"
+  >
+    <p>
+      This one turned up on our counter one afternoon: a customer sat with a sketchbook, watched the
+      pan for a while, and handed this over on the way out. Lobster, prawns, mussels and chicken,
+      labelled and dated, Borough Market underneath.
+    </p>
+    <p>
+      Eat it standing in the market, out of the box, with a wooden fork, ideally while it is still
+      too hot. That is the correct way and we will not be taking questions.
+    </p>
+  </Feature>
+
+  <Feature
+    image={paellaOverhead}
+    alt="Overhead view of a seafood paella filled with mussels and prawns"
+    eyebrow="Chef Ryan"
+    title="The man in charge of the pans"
+    flip
+  >
+    <p>
+      Ryan runs the hot counter, which on a Saturday means feeding a queue that stretches past the
+      flower stall without ever once letting the rice go soft. He has views about stock, and he is
+      right about most of them.
+    </p>
+    <p>
+      Whatever else is worth cooking that day comes off the same heat, and it changes with what is
+      good on the ice. Ask him what he would have.
+    </p>
+  </Feature>
+
+  <Feature
+    image={langoustines}
+    alt="Live langoustines lined up on the fish counter"
+    eyebrow="Cook it yourself"
+    title="Or we can just sell you the raw materials"
+  >
+    <p>
+      If the pan has given you ideas, everything in it is available three metres away, uncooked.
+      Mussels, prawns, lobster tails and a proper stock-bone bag will set you up for a paella at
+      home for less than you think.
+    </p>
+    <p>
+      Ask whoever is on the knives and they will bag the lot, tell you the order things go in the
+      pan, and be slightly too honest about how much saffron you actually need.
+    </p>
+  </Feature>
+
+  <CtaBand
+    image={counterMonk}
+    alt=""
+    eyebrow="Tuesday to Sunday"
+    title="The pan goes on when the shutters go up"
+  >
+    <p class="lede">
+      Tuesday to Saturday 8am-5pm, Sunday 8am-4pm. It is usually gone well before closing on a
+      Saturday, so do not leave it too late.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn--light" href="/visit/">Opening hours &amp; directions</a>
+      <a class="btn btn--light" href="/the-counter/">See the counter</a>
+    </div>
+  </CtaBand>
+</BaseLayout>
+
+<style>
+  .paella__head {
+    max-width: 46ch;
+    margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+  }
+
+  .paella__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 3.5vw, 2.75rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .paella__grid li {
+    margin: 0;
+    padding-top: 1.35rem;
+    border-top: 1px solid var(--line-on-dark);
+  }
+  .paella__grid h3 { margin-bottom: 0.55rem; }
+  .paella__grid p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--muted-on-dark);
+  }
+
+  .paella__foot {
+    max-width: 56ch;
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  @media (min-width: 40rem) {
+    .paella__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64rem) {
+    .paella__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

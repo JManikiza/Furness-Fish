@@ -1,0 +1,229 @@
+---
+import { Image } from 'astro:assets';
+import crestWhite from '../assets/logo-crest-white.png';
+import { contact, hours, nav, site } from '../data/site';
+
+const year = new Date().getFullYear();
+const socials = [site.instagram.market, site.instagram.oysterBar];
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__grid">
+    <div class="site-footer__brand">
+      <Image src={crestWhite} alt="" width={500} height={423} loading="lazy" />
+      <p class="site-footer__motto">Landed by day boat.<br />Sold by people who know the boat.</p>
+    </div>
+
+    <div>
+      <h2 class="site-footer__heading">Find us</h2>
+      <address>
+        {contact.addressLines.map((line) => <span>{line}<br /></span>)}
+      </address>
+      <a class="link" href={contact.mapsUrl} target="_blank" rel="noopener noreferrer">Open in maps</a>
+    </div>
+
+    <div>
+      <h2 class="site-footer__heading">Opening hours</h2>
+      <ul class="site-footer__hours">
+        {
+          hours.map((row) => (
+            <li class:list={[row.closed && 'is-closed']}>
+              <span>{row.day}</span>
+              <span>{row.time}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="site-footer__heading">Say hello</h2>
+      <p>
+        <a class="site-footer__email" href={`mailto:${contact.email}`}>{contact.email}</a>
+      </p>
+      <ul class="site-footer__socials">
+        {
+          socials.map((account) => (
+            <li>
+              <a href={account.url} target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.5" />
+                  <circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" />
+                </svg>
+                <span>@{account.handle}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="site-footer__slow">
+        <img src="/slowfood.gif" alt="" width="34" height="34" loading="lazy" decoding="async" />
+        <span>Proud members of the Slow Food movement</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="wrap site-footer__bar">
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="/">Home</a></li>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <p class="site-footer__legal">© {year} {site.name} Ltd. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--ink);
+    color: var(--muted-on-dark);
+    padding-top: clamp(3.5rem, 8vw, 6rem);
+    font-size: 0.92rem;
+  }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 5vw, 3.5rem);
+    padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .site-footer__brand :global(img) {
+    width: 132px;
+    height: auto;
+    opacity: 0.92;
+  }
+  .site-footer__motto {
+    margin-top: 1.35rem;
+    max-width: 22ch;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.22rem;
+    line-height: 1.5;
+    color: var(--bone);
+  }
+
+  .site-footer__heading {
+    margin: 0 0 1.15rem;
+    font-family: var(--body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--brass-2);
+  }
+
+  address {
+    margin-bottom: 1.15rem;
+    font-style: normal;
+    line-height: 1.95;
+  }
+
+  .site-footer__hours {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-footer__hours li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0.42em 0;
+    border-bottom: 1px solid var(--line-on-dark);
+  }
+  .site-footer__hours li:last-child { border-bottom: 0; }
+  .site-footer__hours .is-closed { color: rgba(169, 188, 199, 0.55); }
+
+  .site-footer__email {
+    color: var(--bone);
+    text-decoration: none;
+    border-bottom: 1px solid var(--brass);
+    padding-bottom: 0.15em;
+    overflow-wrap: anywhere;
+    transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .site-footer__email:hover,
+  .site-footer__email:focus-visible { color: var(--brass-2); border-color: var(--brass-2); }
+
+  .site-footer__socials {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-footer__socials li { margin-bottom: 0.7rem; }
+  .site-footer__socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--bone);
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: color 0.3s var(--ease);
+  }
+  .site-footer__socials a:hover,
+  .site-footer__socials a:focus-visible { color: var(--brass-2); }
+
+  .site-footer__slow {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(169, 188, 199, 0.8);
+  }
+  .site-footer__slow img { border-radius: 50%; flex-shrink: 0; }
+
+  /* ------------------------------------------------------------- bar -- */
+
+  .site-footer__bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--line-on-dark);
+  }
+  .site-footer__bar nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-footer__bar li { margin: 0; }
+  .site-footer__bar a {
+    color: var(--muted-on-dark);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s var(--ease);
+  }
+  .site-footer__bar a:hover,
+  .site-footer__bar a:focus-visible { color: var(--brass-2); }
+
+  .site-footer__legal {
+    margin: 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: rgba(169, 188, 199, 0.6);
+  }
+
+  @media (min-width: 40rem) {
+    .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64rem) {
+    .site-footer__grid { grid-template-columns: 1.35fr 1fr 1fr 1.15fr; }
+    .site-footer__bar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>
