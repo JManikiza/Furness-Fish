@@ -21,6 +21,7 @@ import langoustines from '../assets/langoustines.jpg';
 import scallopShellsOpen from '../assets/scallop-shells-open.jpg';
 import seaUrchins from '../assets/sea-urchins.jpg';
 import oysterBarQueue from '../assets/oyster-bar-queue.jpg';
+import { withBase } from '../lib/paths';
 
 const instaTiles = [
   { image: mulletClams, alt: 'Red mullet, clams and cavolo nero laid out on crushed ice', account: 'market' as const },
@@ -41,8 +42,8 @@ const instaTiles = [
     lede="A Morecambe Bay fishing family holding the finest fish counter in London's oldest food market. Day boats, hand-dived shellfish, an oyster bar and a paella pan the size of a cartwheel."
     variant="full"
   >
-    <a class="btn btn--light" href="/the-counter/">See what's on the ice</a>
-    <a class="btn btn--light" href="/visit/">Find the stall</a>
+    <a class="btn btn--light" href={withBase('/the-counter/')}>See what's on the ice</a>
+    <a class="btn btn--light" href={withBase('/visit/')}>Find the stall</a>
   </Hero>
 
   <!-- ---------------------------------------------------- the promise -- -->
@@ -94,7 +95,7 @@ const instaTiles = [
       Whatever you pick, it gets filleted, pin-boned, scaled or butterflied across the marble in front
       of you - because a fishmonger who will not do that is really just a shop.
     </p>
-    <p class="btn-row"><a class="link" href="/the-counter/">See the full counter</a></p>
+    <p class="btn-row"><a class="link" href={withBase('/the-counter/')}>See the full counter</a></p>
   </Feature>
 
   <Feature
@@ -113,7 +114,7 @@ const instaTiles = [
       No table, no booking, no ceremony. You stand at the Boat with a cold glass in one hand, Fred
       hands you a shell, and for ninety seconds Borough Market goes quiet.
     </p>
-    <p class="btn-row"><a class="link" href="/oyster-bar/">Meet the Oyster Boat</a></p>
+    <p class="btn-row"><a class="link" href={withBase('/oyster-bar/')}>Meet the Oyster Boat</a></p>
   </Feature>
 
   <Feature
@@ -132,7 +133,7 @@ const instaTiles = [
       Eat it standing in the market, out of the box, with a wooden fork, ideally while it is still
       too hot. That is the correct way and we will not be taking questions.
     </p>
-    <p class="btn-row"><a class="link" href="/paella/">Chef Ryan's paella</a></p>
+    <p class="btn-row"><a class="link" href={withBase('/paella/')}>Chef Ryan's paella</a></p>
   </Feature>
 
   <!-- ---------------------------------------------------------- story -- -->
@@ -167,7 +168,7 @@ const instaTiles = [
             “The heroes of Borough Market”
             <cite>Jamie Oliver, <em>Jamie's Kitchen</em></cite>
           </blockquote>
-          <p class="btn-row"><a class="link" href="/our-story/">Read our story</a></p>
+          <p class="btn-row"><a class="link" href={withBase('/our-story/')}>Read our story</a></p>
         </div>
       </div>
     </div>
@@ -185,7 +186,7 @@ const instaTiles = [
       Ryan on the pans. Between them they have forgotten more about fish than most restaurants will
       ever learn.
     </p>
-    <div class="btn-row"><a class="btn btn--light" href="/our-story/">Meet the team</a></div>
+    <div class="btn-row"><a class="btn btn--light" href={withBase('/our-story/')}>Meet the team</a></div>
   </CtaBand>
 
   <InstagramStrip tiles={instaTiles} />
@@ -201,7 +202,7 @@ const instaTiles = [
       8 Southwark Street, on the Borough Market corner, two minutes from London Bridge. Come early if
       you want the turbot - it does not hang about.
     </p>
-    <div class="btn-row"><a class="btn btn--light" href="/visit/">Opening hours &amp; directions</a></div>
+    <div class="btn-row"><a class="btn btn--light" href={withBase('/visit/')}>Opening hours &amp; directions</a></div>
   </CtaBand>
 </BaseLayout>
 

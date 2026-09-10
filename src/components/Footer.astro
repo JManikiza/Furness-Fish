@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import crestWhite from '../assets/logo-crest-white.png';
 import { contact, hours, nav, site } from '../data/site';
+import { withBase } from '../lib/paths';
 
 const year = new Date().getFullYear();
 const socials = [site.instagram.market, site.instagram.oysterBar];
@@ -58,7 +59,7 @@ const socials = [site.instagram.market, site.instagram.oysterBar];
         }
       </ul>
       <p class="site-footer__slow">
-        <img src="/slowfood.gif" alt="" width="34" height="34" loading="lazy" decoding="async" />
+        <img src={withBase('/slowfood.gif')} alt="" width="34" height="34" loading="lazy" decoding="async" />
         <span>Proud members of the Slow Food movement</span>
       </p>
     </div>
@@ -67,8 +68,8 @@ const socials = [site.instagram.market, site.instagram.oysterBar];
   <div class="wrap site-footer__bar">
     <nav aria-label="Footer">
       <ul>
-        <li><a href="/">Home</a></li>
-        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        <li><a href={withBase('/')}>Home</a></li>
+        {nav.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
       </ul>
     </nav>
     <p class="site-footer__legal">© {year} {site.name} Ltd. All rights reserved.</p>

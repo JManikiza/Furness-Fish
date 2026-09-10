@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import counterMonkfish from '../assets/counter-monkfish.jpg';
+import { withBase } from '../lib/paths';
 ---
 
 <BaseLayout title="Page not found" description="That page has slipped the net.">
@@ -12,7 +13,7 @@ import counterMonkfish from '../assets/counter-monkfish.jpg';
     title="That one slipped the net"
     lede="The page you were after has moved, or never existed. The fish, however, is exactly where it should be."
   >
-    <a class="btn btn--light" href="/">Back to the front</a>
-    <a class="btn btn--light" href="/the-counter/">See the counter</a>
+    <a class="btn btn--light" href={withBase('/')}>Back to the front</a>
+    <a class="btn btn--light" href={withBase('/the-counter/')}>See the counter</a>
   </Hero>
 </BaseLayout>

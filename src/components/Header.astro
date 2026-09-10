@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import wordmark from '../assets/logo-wordmark.png';
 import wordmarkWhite from '../assets/logo-wordmark-white.png';
 import { nav, site } from '../data/site';
+import { withBase } from '../lib/paths';
 
 interface Props {
   /** Sit over the top of a hero image rather than above it. */
@@ -11,12 +12,16 @@ interface Props {
 const { transparent = false } = Astro.props;
 
 const path = Astro.url.pathname;
-const isCurrent = (href: string) => path === href || path === href.replace(/\/$/, '');
+// Compare against the based path, since Astro.url.pathname includes the base.
+const isCurrent = (href: string) => {
+  const target = withBase(href);
+  return path === target || path === target.replace(/\/$/, '');
+};
 ---
 
 <header class:list={['site-header', transparent && 'site-header--transparent']} data-header>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="/" aria-label={`${site.name} - home`}>
+    <a class="site-header__brand" href={withBase('/')} aria-label={`${site.name} - home`}>
       <Image class="brand-dark" src={wordmark} alt={site.name} width={601} height={251} loading="eager" />
       <Image class="brand-light" src={wordmarkWhite} alt="" width={601} height={251} loading="eager" aria-hidden="true" />
     </a>
@@ -26,7 +31,7 @@ const isCurrent = (href: string) => path === href || path === href.replace(/\/$/
         {
           nav.map((item) => (
             <li>
-              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+              <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>
                 {item.label}
               </a>
             </li>
@@ -45,11 +50,11 @@ const isCurrent = (href: string) => path === href || path === href.replace(/\/$/
   <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
     <nav aria-label="Primary, mobile">
       <ul>
-        <li><a href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a></li>
+        <li><a href={withBase('/')} aria-current={isCurrent('/') ? 'page' : undefined}>Home</a></li>
         {
           nav.map((item) => (
             <li>
-              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+              <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>
                 {item.label}
               </a>
             </li>

@@ -11,6 +11,7 @@ import counterMonkfish from '../assets/counter-monkfish.jpg';
 import hakeBoard from '../assets/hake-board.jpg';
 import counterTuna from '../assets/counter-tuna.jpg';
 import dayBoatDawn from '../assets/day-boat-dawn.jpg';
+import { withBase } from '../lib/paths';
 ---
 
 <BaseLayout
@@ -145,8 +146,8 @@ import dayBoatDawn from '../assets/day-boat-dawn.jpg';
       That is not marketing - it is just what happens when you buy from fishermen instead of brokers.
     </p>
     <div class="btn-row">
-      <a class="btn btn--light" href="/our-story/">How we source</a>
-      <a class="btn btn--light" href="/visit/">Come and look</a>
+      <a class="btn btn--light" href={withBase('/our-story/')}>How we source</a>
+      <a class="btn btn--light" href={withBase('/visit/')}>Come and look</a>
     </div>
   </CtaBand>
 
