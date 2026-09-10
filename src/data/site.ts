@@ -176,10 +176,10 @@ export const oysters: Catch[] = [
 
 export const team = [
   { name: 'Max', role: 'Stall manager', note: 'Runs the floor and knows what is worth buying before you have asked.' },
-  { name: 'Peter', role: 'Fishmonger', note: 'Will talk you through Whitby salmon for as long as you will listen.' },
-  { name: 'Harry', role: 'Fishmonger', note: 'The one to ask what is best on the ice this morning.' },
+  { name: 'Peter', role: 'Fishmonger', note: 'Will talk you through Loch Duart salmon for as long as you will listen.' },
+  { name: 'Harry', role: 'Fishmonger', note: 'Cares about the fish as much as he cares about his own appearance. Our in-house celebrity.' },
   { name: 'Darius', role: 'Oysters, caviar & socials', note: 'Shucks at speed, and the reason your feed is full of us.' },
-  { name: 'Fred', role: 'Oyster bar', note: 'Behind the Oyster Boat most days, glass in one hand, knife in the other.' },
+  { name: 'Fred', role: 'Oyster bar', note: 'Behind the Oyster Boat most days. The muscles of the operation.' },
   { name: 'Jack', role: 'Oysters & caviar', note: 'Patient with beginners, dangerous with a tin of Oscietra.' },
   { name: 'Chef Ryan', role: 'Hot counter', note: 'Commands the paella pans and everything else that comes off the heat.' },
 ] as const;
