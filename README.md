@@ -123,19 +123,31 @@ someone clicks. Total JavaScript for the whole site is still 2.4 KB.
 
 ## Favicon
 
-The crest cannot be used directly at favicon sizes - the boat, gulls, waves and
-bed of fish collapse into a smudge below about 32px. The icon is therefore a
-mark drawn for the job in `scripts/make-favicon.mjs`: the smack's two sails
-over a hull, in bone and brass on the site's ink navy.
+The crest cannot be used at favicon sizes - below about 32px the boat, gulls,
+waves and bed of fish collapse into a smudge. The icon is instead an FF
+monogram built from the site's own letterform: the F is cut straight out of the
+"Fish Market" line of the wordmark, so it is genuinely the brand typeface
+rather than a lookalike serif.
+
+The two Fs are staggered - first high and left in bone, second low and right in
+brass, with the bone one crossing over the top. The colour separation earns its
+place: with both letters the same colour the overlap turns to mush at every
+size.
 
 ```bash
-node scripts/make-favicon.mjs              # writes the real files
-node scripts/make-favicon.mjs --candidates # magnified comparison sheet
+node scripts/make-favicon.mjs            # writes the real files
+node scripts/make-favicon.mjs --preview  # magnified check at 16/32/48
 ```
 
-It produces a 3-frame `favicon.ico` (16/32/48, 1.5 KB), a scalable
-`favicon.svg` that modern browsers prefer, and a 180px
-`apple-touch-icon.png` for iOS home screens.
+Geometry lives in the `DESIGN` object at the top of that script, expressed as
+fractions of the letter height so the mark is identical at every output size.
+The mark is always composed at 400px and scaled down in one step, and the 16
+and 32px frames get a light unsharp mask to buy back serif definition.
+
+Output: a 3-frame `favicon.ico` (16/32/48), `favicon-192.png` for Android and
+large-icon contexts, and `apple-touch-icon.png` at 180px for iOS home screens.
+There is no `favicon.svg`, because the mark derives from raster artwork and a
+PNG wrapped in an SVG would not be an honest vector.
 
 Note that browsers only auto-request `/favicon.ico` at the *origin* root, which
 on the project-site URL is outside the base path. The explicit `<link>` tags in
