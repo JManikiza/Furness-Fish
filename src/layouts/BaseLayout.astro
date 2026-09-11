@@ -27,7 +27,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    <link rel="icon" type="image/png" href={withBase('/favicon.png')} />
+    {/*
+      .ico carries 16/32/48 for the browser tab and bookmarks bar; the SVG is
+      preferred by anything modern and stays crisp on high-DPI screens; the PNG
+      is the iOS home-screen icon.
+    */}
+    <link rel="icon" href={withBase('/favicon.ico')} sizes="32x32" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
     <meta name="theme-color" content="#071c27" />
 
     <meta property="og:type" content="website" />

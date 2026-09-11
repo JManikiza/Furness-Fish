@@ -121,6 +121,26 @@ of script on page load, which would undo the rest of this site, so the page
 renders our own poster and only builds the `youtube-nocookie.com` iframe once
 someone clicks. Total JavaScript for the whole site is still 2.4 KB.
 
+## Favicon
+
+The crest cannot be used directly at favicon sizes - the boat, gulls, waves and
+bed of fish collapse into a smudge below about 32px. The icon is therefore a
+mark drawn for the job in `scripts/make-favicon.mjs`: the smack's two sails
+over a hull, in bone and brass on the site's ink navy.
+
+```bash
+node scripts/make-favicon.mjs              # writes the real files
+node scripts/make-favicon.mjs --candidates # magnified comparison sheet
+```
+
+It produces a 3-frame `favicon.ico` (16/32/48, 1.5 KB), a scalable
+`favicon.svg` that modern browsers prefer, and a 180px
+`apple-touch-icon.png` for iOS home screens.
+
+Note that browsers only auto-request `/favicon.ico` at the *origin* root, which
+on the project-site URL is outside the base path. The explicit `<link>` tags in
+`BaseLayout.astro` cover that; on a custom domain the root request resolves too.
+
 ## Known gaps
 
 - **The Instagram grid is curated, not live.** Instagram's Basic Display API
