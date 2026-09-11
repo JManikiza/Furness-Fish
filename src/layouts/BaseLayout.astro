@@ -27,7 +27,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    <link rel="icon" type="image/png" href={withBase('/favicon.png')} />
+    {/*
+      .ico carries 16/32/48 for the browser tab and bookmarks bar; the 192px
+      PNG covers Android home screens and anywhere a large icon is wanted; the
+      180px one is the iOS home-screen icon. The mark is derived from raster
+      artwork, so there is no honest vector version to offer.
+    */}
+    <link rel="icon" href={withBase('/favicon.ico')} sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="192x192" href={withBase('/favicon-192.png')} />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
     <meta name="theme-color" content="#071c27" />
 
     <meta property="og:type" content="website" />
